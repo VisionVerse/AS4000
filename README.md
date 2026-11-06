@@ -26,14 +26,14 @@ pip install -r requirements.txt
 
 ## Download links
 
-Paste the four URLs into `paths.py`. The scripts read that file and do not download anything by themselves.
+The training set, validation set, test set, and weights are shared on Baidu Netdisk. Fill in each link and extraction code.
 
-```python
-TRAIN_URL = ""
-VAL_URL = ""
-TEST_URL = ""
-WEIGHT_URL = ""
-```
+| Item | Baidu Netdisk link | Extraction code |
+| --- | --- | --- |
+| Training set |  |  |
+| Validation set |  |  |
+| Test set |  |  |
+| Weights |  |  |
 
 After downloading, arrange the files as follows. If an archive uses different names, edit the path constants in `paths.py` or pass the command-line arguments.
 
