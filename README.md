@@ -65,7 +65,11 @@ train/   val/   test/
 
 ![MLRF-Net framework](assets/mlrf-net-v4.png)
 
+<div align="justify">
+
 On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of 17.17×10<sup>-6</sup>, ahead of the compared methods on all four accuracy metrics. The best result in each column is shown in $\color{red}{\pmb{\mathrm{bold\ red}}}$, and the second-best result in $\color{blue}{\mathrm{blue}}$.
+
+</div>
 
 <div align="center">
 
@@ -88,7 +92,7 @@ On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability,
 
 </div>
 
-<p align="justify">The figure below shows representative AS4000 samples. Each group pairs the RGB–thermal input and the ground-truth mask with predictions from the compared methods. The surface plots enlarge the response around these few-pixel targets. MLRF-Net stays closer to the mask, while the other methods more often miss the seal or leave extra responses on ice and water.</p>
+<p align="justify">Each group below pairs the RGB–thermal input and ground-truth mask with the compared predictions, and MLRF-Net stays closer to these few-pixel targets while the other methods more often miss the seal or leave extra responses on ice and water.</p>
 
 ![Qualitative comparison on AS4000](assets/qualitative_results.png)
 
