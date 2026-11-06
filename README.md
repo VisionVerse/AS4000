@@ -70,7 +70,7 @@ data/val/...
 data/test/...
 ```
 
-## 🧠 Baseline: MLRF-Net
+## 🧠 Baseline: Multimodal Low-Rank Refinement Fusion Network (MLRF-Net)
 
 <p align="justify">This repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).</p>
 
