@@ -1,4 +1,4 @@
-# AS4000: A Benchmark for RGB-Thermal Arctic Seal Small Target Detection via Multimodal Low-Rank Adaptation Fusion
+<h1 align="justify">AS4000: A Benchmark for RGB-Thermal Arctic Seal Small Target Detection via Multimodal Low-Rank Adaptation Fusion</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Scene-Arctic%20Remote%20Sensing-2ea44f" alt="Scene">
@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/github/stars/VisionVerse/AS4000?style=flat&label=Stars&color=daaa00" alt="Stars">
 </p>
 
-**🖼️ 3,983** paired aerial images · **🦭 12,554** seals · **📐 mostly 10–20** pixels · **🏷️ pixel-level masks**
+<p align="center"><strong>🖼️ 3,983</strong> paired aerial images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
 
 This repository is the **1st** work focused on small-target detection of Arctic seals, and AS4000 is the **1st** multimodal dataset built for that task. Remote-sensing imagery of Arctic seals is important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
 
