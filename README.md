@@ -88,11 +88,11 @@ On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability,
 | [RPCANet++](https://github.com/fengyiwu98/RPCANet) | TPAMI, 2026 | 2.96 | 190.67 | 80.40 | 30.10 | 46.27 | 76.92 | 88.16 |
 | [DURD](https://github.com/haofan72/DURD) | TGRS, 2026 | 2.47 | 52.85 | 125.30 | 30.06 | 46.23 | 77.58 | 102.84 |
 | [SAM3](https://github.com/facebookresearch/sam3) | ICLR, 2026 | 473.59 | 7149.94 | 3.30 | 22.47 | 36.70 | 68.79 | 350.80 |
-| **Ours** | -- | 9.09 | 110.11 | 13.61 | $\color{red}{\pmb{51.93}}$ | $\color{red}{\pmb{68.36}}$ | $\color{red}{\pmb{89.15}}$ | $\color{red}{\pmb{17.17}}$ |
+| **MLRF-Net** | -- | 9.09 | 110.11 | 13.61 | $\color{red}{\pmb{51.93}}$ | $\color{red}{\pmb{68.36}}$ | $\color{red}{\pmb{89.15}}$ | $\color{red}{\pmb{17.17}}$ |
 
 </div>
 
-<p align="justify">Each group below pairs the RGB–thermal input and ground-truth mask with the compared predictions, and MLRF-Net stays closer to these few-pixel targets while the other methods more often miss the seal or leave extra responses on ice and water.</p>
+<p align="justify">Each group below pairs the RGB–thermal input and ground-truth mask with the MLRF-Net prediction, which stays close to these few-pixel targets.</p>
 
 ![Qualitative comparison on AS4000](assets/qualitative_results.png)
 
