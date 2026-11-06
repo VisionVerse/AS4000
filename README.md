@@ -1,14 +1,58 @@
-# RGB-Thermal Small Target Detection on AS4000
+# AS4000: RGB–Thermal Benchmark for Arctic Seal Detection
 
 [中文 README](README_zh.md)
 
-![RGB, thermal, and ground-truth examples from AS4000](assets/seal_show.png)
+[![Stars](https://img.shields.io/github/stars/VisionVerse/AS4000?style=social)](https://github.com/VisionVerse/AS4000/stargazers)
 
-To support RGB-Thermal small target detection research in polar environments, we establish AS4000, a benchmark derived from the NOAA Arctic Seals 2019 aerial survey imagery (AFSC2026). AS4000 contains 3,983 spatially corresponding RGB and thermal images with pixel-level target annotations, and it focuses on extremely small Arctic seals against heterogeneous ice and water backgrounds. Unlike conventional RGB-T benchmarks dominated by generic objects, AS4000 is a task-specific dataset for sparse wildlife targets, complex background interference, and complementary modality responses. RGB images record surface texture, ice structure, and target appearance, including fragmented sea ice, irregular ice boundaries, and complex surface patterns, while thermal images provide radiation-related information and show substantial variation in background intensity and spatial structure. The two modalities are complementary but heterogeneous, and small seals can resemble surrounding ice or local thermal anomalies, which creates considerable foreground-background ambiguity. The 3,983 images contain 12,554 targets in total, or 3.15 targets per image. The training split has 1,500 images and 4,300 targets (2.87 per image), the validation split has 500 images and 871 targets (1.74 per image), and the test split has 1,983 images and 7,383 targets (3.72 per image). Training and validation are used for optimization and model selection, and the test split is reserved for evaluation. Most targets cover about 10–20 pixels, and the signal-to-clutter ratio has a broad distribution, with most targets at relatively low to moderate contrast against the surrounding clutter. Paired RGB-T observations, pixel-level masks, and these target-background statistics make AS4000 a dedicated benchmark for multimodal Arctic-seal small-target detection.
+**3,983** paired aerial images · **12,554** seals · mostly **10–20** pixels · pixel-level masks
 
-## Method
+AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB–thermal imagery. The dataset is the main release. MLRF-Net is the baseline we provide with it.
 
-MLRF-Net detects extremely small Arctic seals in airborne RGB-T imagery, where the targets are tiny, the ice background is cluttered, and the two modalities respond differently. The network combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).
+<p align="center">
+  <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
+</p>
+
+<p align="center">
+  RGB shows ice texture. Thermal shows a different radiation pattern. The seal is only a few pixels wide.
+</p>
+
+## Highlights
+
+| | |
+| --- | --- |
+| Pairs | 3,983 spatially aligned RGB–thermal images |
+| Targets | 12,554 seals, 3.15 per image |
+| Labels | Pixel masks and bounding boxes |
+| Target size | Most seals cover about 10–20 pixels |
+| Source | NOAA Arctic Seals 2019 aerial survey (AFSC2026) |
+| Split | 1,500 train / 500 val / 1,983 test |
+
+## Dataset
+
+AS4000 is built for RGB–thermal small-target detection in polar environments. Conventional RGB–T benchmarks are dominated by generic objects. AS4000 is built around sparse wildlife, cluttered ice and water, and two modalities that do not describe the scene in the same way.
+
+RGB records surface texture, ice structure, and the visible appearance of a seal: broken sea ice, irregular ice edges, and fine surface patterns. Thermal records radiation. Its background intensity and spatial pattern change substantially from the RGB view. The two signals are complementary and inconsistent. A seal can look like a piece of ice, or like a small thermal glitch.
+
+| Split | Images | Targets | Per image | Use |
+| --- | ---: | ---: | ---: | --- |
+| Train | 1,500 | 4,300 | 2.87 | Optimization |
+| Validation | 500 | 871 | 1.74 | Model selection |
+| Test | 1,983 | 7,383 | 3.72 | Held out |
+| **Total** | **3,983** | **12,554** | **3.15** | |
+
+The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.
+
+Each sample uses the same file stem across four folders:
+
+```text
+RGB/*.jpg    T/*.tif    box/*.txt    GT/*.png
+```
+
+Boxes are pixel `xyxy`, one box per line. Mask pixels above 128 are foreground. Thermal TIFF values must keep the normalization in `data.py`, so the frozen thermal LoRA sees the distribution it was trained on.
+
+## Baseline: MLRF-Net
+
+The repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).
 
 CM-LoRA freezes the pretrained [SAM3](https://github.com/Sompote/SAM3_LoRA) encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.
 
@@ -16,7 +60,7 @@ BSRF exchanges the two feature maps with bidirectional cross-attention and then 
 
 ![MLRF-Net framework](assets/mlrf-net-v4.png)
 
-On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of 17.17×10<sup>-6</sup>, ahead of the compared methods on all four metrics.
+On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of 17.17×10<sup>-6</sup>, ahead of the compared methods on all four accuracy metrics.
 
 Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in units of 10<sup>-6</sup>. ↑ means higher is better, and ↓ means lower is better. The best result in each column is shown in $\color{red}{\pmb{\mathrm{bold\ red}}}$, and the second-best result in $\color{blue}{\mathrm{blue}}$.
 
@@ -39,7 +83,7 @@ Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in un
 
 ## Setup
 
-Use a Linux machine with an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.
+Linux, an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.
 
 ```bash
 pip install -r requirements.txt
@@ -47,7 +91,7 @@ pip install -r requirements.txt
 
 `third_party/sam3` is the SAM 3 package imported by this repository. It comes from [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA). The SAM 3 code is SAM material from Meta and remains under the license in `third_party/sam3/LICENSE`.
 
-## Download links
+## Download
 
 The training set and the four weight files are on Baidu Netdisk. For the validation set or the test set, email [1546144577@qq.com](mailto:1546144577@qq.com).
 
@@ -62,9 +106,7 @@ The training set and the four weight files are on Baidu Netdisk. For the validat
 | `best.pth` | [Baidu Netdisk](https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best) |
 | Prediction results | [Baidu Netdisk](https://pan.baidu.com/s/12qjWecExrdNCf_wFrBwfZA?pwd=pred) |
 
-After downloading, arrange the files as follows. If an archive uses different names, edit the path constants in `paths.py` or pass the command-line arguments.
-
-Training, validation, and test splits:
+Place the downloaded files as follows. If an archive uses different names, edit the paths in `paths.py` or pass them on the command line.
 
 ```text
 data/train/RGB/*.jpg
@@ -73,13 +115,7 @@ data/train/box/*.txt
 data/train/GT/*.png
 data/val/...
 data/test/...
-```
 
-A stem must match across `RGB`, `T`, `box`, and `GT`. Boxes are pixel `xyxy`, one box per line. Mask foreground is any PNG value above 128. Thermal TIFF values use the normalization in `data.py`; keep that arithmetic order so the frozen thermal LoRA sees its original input distribution. The three splits contain 1,500, 500, and 1,983 pairs.
-
-Weights:
-
-```text
 weights/sam3.pt
 weights/rgb_lora.pt
 weights/thermal_lora.pt
@@ -106,7 +142,7 @@ torchrun --nproc_per_node=4 train.py \
   --val_data_dir data/val
 ```
 
-The batch size is 1 image per GPU. With more than one GPU, gradients of M1 and LoRA3 are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to `train_logs/best.pth`.
+The batch size is 1 image per GPU. With more than one GPU, gradients of BSRF and CM-LoRA are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to `train_logs/best.pth`.
 
 ## Test
 
