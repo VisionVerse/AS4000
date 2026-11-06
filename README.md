@@ -8,11 +8,9 @@
   <img src="https://img.shields.io/github/stars/VisionVerse/AS4000?style=flat&label=Stars&color=daaa00" alt="Stars">
 </p>
 
-<p align="center"><strong>🖼️ 3,983</strong> paired aerial images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
+<p align="center"><strong>🖼️ 3,983</strong> paired RGB-T images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
 
-This repository is the **1st** work focused on small-target detection of Arctic seals, and AS4000 is the **1st** multimodal dataset built for that task. Remote-sensing imagery of Arctic seals is important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
-
-AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB–thermal imagery. The dataset is the main release. MLRF-Net is the baseline we provide with it.
+This repository is the **1st** work focused on small-target detection of Arctic seals, and AS4000 is the **1st** multimodal dataset built for that task. Remote-sensing imagery of Arctic seals is important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment. AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB–thermal imagery. The dataset is the main release. MLRF-Net is the baseline we provide with it.
 
 <p align="center">
   <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
@@ -38,12 +36,16 @@ AS4000 is built for RGB–thermal small-target detection in polar environments. 
 
 RGB records surface texture, ice structure, and the visible appearance of a seal: broken sea ice, irregular ice edges, and fine surface patterns. Thermal records radiation. Its background intensity and spatial pattern change substantially from the RGB view. The two signals are complementary and inconsistent. A seal can look like a piece of ice, or like a small thermal glitch.
 
+<div align="center">
+
 | Split | Images | Targets | Per image | Download |
 | :---: | :---: | :---: | :---: | :---: |
 | Train | 1,500 | 4,300 | 2.87 | [Baidu Netdisk](https://pan.baidu.com/s/1jybcryZ1uE8vph3uX5hVKw?pwd=Seal) |
 | Validation | 500 | 871 | 1.74 | [Email](mailto:1546144577@qq.com) |
 | Test | 1,983 | 7,383 | 3.72 | [Email](mailto:1546144577@qq.com) |
 | **Total** | **3,983** | **12,554** | **3.15** | |
+
+</div>
 
 <p align="center"><img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="32%"> <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="32%"> <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="32%"></p>
 
@@ -71,6 +73,8 @@ On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability,
 
 Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in units of 10<sup>-6</sup>. ↑ means higher is better, and ↓ means lower is better. The best result in each column is shown in $\color{red}{\pmb{\mathrm{bold\ red}}}$, and the second-best result in $\color{blue}{\mathrm{blue}}$.
 
+<div align="center">
+
 | Methods | Pub. | Params ↓ | GFLOPs ↓ | FPS ↑ | IoU ↑ | F<sub>1</sub> ↑ | P<sub>d</sub> ↑ | F<sub>a</sub> ↓ |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | DNA-Net | TIP, 2023 | 4.70 | 14.28 | 64.20 | 30.00 | 46.15 | 79.05 | 87.30 |
@@ -88,6 +92,8 @@ Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in un
 | SAM3 | ICLR, 2026 | 473.59 | 7149.94 | 3.30 | 22.47 | 36.70 | 68.79 | 350.80 |
 | **Ours** | -- | 9.09 | 110.11 | 13.61 | $\color{red}{\pmb{51.93}}$ | $\color{red}{\pmb{68.36}}$ | $\color{red}{\pmb{89.15}}$ | $\color{red}{\pmb{17.17}}$ |
 
+</div>
+
 ## 🛠️ Setup
 
 Linux, an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.
@@ -102,6 +108,8 @@ pip install -r requirements.txt
 
 The four weight files and the prediction results are on Baidu Netdisk.
 
+<div align="center">
+
 | Content | Link |
 | :---: | :---: |
 | `sam3.pt` | [Baidu Netdisk](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
@@ -109,6 +117,8 @@ The four weight files and the prediction results are on Baidu Netdisk.
 | `thermal_lora.pt` | [Baidu Netdisk](https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA) |
 | `best.pth` | [Baidu Netdisk](https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best) |
 | Prediction results | [Baidu Netdisk](https://pan.baidu.com/s/12qjWecExrdNCf_wFrBwfZA?pwd=pred) |
+
+</div>
 
 Place the downloaded files as follows. If an archive uses different names, edit the paths in `paths.py` or pass them on the command line.
 
