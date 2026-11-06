@@ -4,7 +4,7 @@
 
 **🖼️ 3,983** paired aerial images · **🦭 12,554** seals · **📐 mostly 10–20** pixels · **🏷️ pixel-level masks**
 
-This is the first work focused on small-target detection of Arctic seals, and AS4000 is the first multimodal dataset built for that task. Remote-sensing imagery of Arctic seals is important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
+This repository is the **1st** work focused on small-target detection of Arctic seals, and AS4000 is the **1st** multimodal dataset built for that task. Remote-sensing imagery of Arctic seals is important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
 
 AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB–thermal imagery. The dataset is the main release. MLRF-Net is the baseline we provide with it.
 
@@ -26,7 +26,7 @@ AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB
 | 📐 Target size | Most seals cover about 10–20 pixels |
 | ✂️ Split | 1,500 train / 500 val / 1,983 test |
 
-## 🗂️ AS4000: RGB-Thermal Arctic Seal Small Target Detection Dataset
+## 🗂️ Dataset
 
 AS4000 is built for RGB–thermal small-target detection in polar environments. Conventional RGB–T benchmarks are dominated by generic objects. AS4000 is built around sparse wildlife, cluttered ice and water, and two modalities that do not describe the scene in the same way.
 
@@ -39,13 +39,7 @@ RGB records surface texture, ice structure, and the visible appearance of a seal
 | Test | 1,983 | 7,383 | 3.72 | [Email](mailto:1546144577@qq.com) |
 | **Total** | **3,983** | **12,554** | **3.15** | |
 
-<table>
-  <tr>
-    <td width="33%" align="center"><img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="100%"></td>
-    <td width="33%" align="center"><img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="100%"></td>
-    <td width="33%" align="center"><img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="100%"></td>
-  </tr>
-</table>
+<p align="center"><img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="32%"> <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="32%"> <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="32%"></p>
 
 The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.
 
