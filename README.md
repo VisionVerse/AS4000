@@ -1,7 +1,5 @@
 # AS4000: RGB–Thermal Benchmark for Arctic Seal Detection
 
-[中文 README](README_zh.md)
-
 [![Stars](https://img.shields.io/github/stars/VisionVerse/AS4000?style=social)](https://github.com/VisionVerse/AS4000/stargazers)
 
 **🖼️ 3,983** paired aerial images · **🦭 12,554** seals · **📐 mostly 10–20** pixels · **🏷️ pixel-level masks**
@@ -32,17 +30,17 @@ AS4000 is built for RGB–thermal small-target detection in polar environments. 
 
 RGB records surface texture, ice structure, and the visible appearance of a seal: broken sea ice, irregular ice edges, and fine surface patterns. Thermal records radiation. Its background intensity and spatial pattern change substantially from the RGB view. The two signals are complementary and inconsistent. A seal can look like a piece of ice, or like a small thermal glitch.
 
-| Split | Images | Targets | Per image |
-| --- | ---: | ---: | ---: |
-| Train | 1,500 | 4,300 | 2.87 |
-| Validation | 500 | 871 | 1.74 |
-| Test | 1,983 | 7,383 | 3.72 |
-| **Total** | **3,983** | **12,554** | **3.15** |
+| Split | Images | Targets | Per image | Download |
+| --- | ---: | ---: | ---: | --- |
+| Train | 1,500 | 4,300 | 2.87 | [Baidu Netdisk](https://pan.baidu.com/s/1jybcryZ1uE8vph3uX5hVKw?pwd=Seal) |
+| Validation | 500 | 871 | 1.74 | [Email](mailto:1546144577@qq.com) |
+| Test | 1,983 | 7,383 | 3.72 | [Email](mailto:1546144577@qq.com) |
+| **Total** | **3,983** | **12,554** | **3.15** | |
 
 <p align="center">
-  <img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="32%">
-  <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="32%">
-  <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="32%">
+  <img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="340" height="203">
+  <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="340" height="203">
+  <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="340" height="203">
 </p>
 
 The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.
@@ -98,13 +96,10 @@ pip install -r requirements.txt
 
 ## 📦 Download
 
-The training set and the four weight files are on Baidu Netdisk. For the validation set or the test set, email [1546144577@qq.com](mailto:1546144577@qq.com).
+The four weight files and the prediction results are on Baidu Netdisk.
 
 | Content | Link |
 | --- | --- |
-| Training set | [Baidu Netdisk](https://pan.baidu.com/s/1jybcryZ1uE8vph3uX5hVKw?pwd=Seal) |
-| Validation set | [Email](mailto:1546144577@qq.com) |
-| Test set | [Email](mailto:1546144577@qq.com) |
 | `sam3.pt` | [Baidu Netdisk](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
 | `rgb_lora.pt` | [Baidu Netdisk](https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA) |
 | `thermal_lora.pt` | [Baidu Netdisk](https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA) |
@@ -170,6 +165,7 @@ python evaluate.py --pred_root test_maps
 
 The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.
 
+<!--
 ## 📝 Citation
 
 ```bibtex
@@ -201,3 +197,4 @@ The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 thres
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=VisionVerse/AS4000&type=Date)](https://www.star-history.com/#VisionVerse/AS4000&Date)
+-->
