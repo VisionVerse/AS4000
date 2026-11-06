@@ -148,6 +148,8 @@ weights/best.pth
 
 ## 🚀 Train
 
+<p align="justify">Use the first command to train on one GPU, and the second to train on multiple GPUs.</p>
+
 ```bash
 python train.py \
   --checkpoint weights/sam3.pt \
@@ -166,9 +168,9 @@ torchrun --nproc_per_node=4 train.py \
   --save_path train_logs
 ```
 
-<p align="justify">The batch size is 1 image per GPU. With more than one GPU, gradients of BSRF and CM-LoRA are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to <code>train_logs/best.pth</code>.</p>
-
 ## 🔎 Test
+
+<p align="justify">Use the following command to test.</p>
 
 ```bash
 python test.py \
@@ -180,17 +182,15 @@ python test.py \
   --save_dir test_maps
 ```
 
-<p align="justify">This writes one 8-bit probability map per test image to <code>test_maps/</code>, at the original image resolution.</p>
-
 ## 📊 Evaluate
+
+<p align="justify">Use the following command to evaluate.</p>
 
 ```bash
 python evaluate.py \
   --pred_root test_maps \
   --gt_dir data/test/GT
 ```
-
-<p align="justify">The report contains IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.</p>
 
 <!--
 ## 📝 Citation
