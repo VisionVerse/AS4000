@@ -8,13 +8,13 @@
   <img src="https://img.shields.io/github/stars/VisionVerse/AS4000?style=flat&label=Stars&color=daaa00" alt="Stars">
 </p>
 
+![avatar](/assets/AS4000.png)
+
 <p align="center"><strong>🖼️ 3,983</strong> paired RGB-T images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
 
 <p align="justify">This repository is the <strong>1st</strong> work focused on RGB-T Small Target Detection of Arctic seals. For this task, we release AS4000, the <strong>1st</strong> multimodal benchmark for detecting extremely small Arctic seals in RGB–thermal imagery. These remote sensing observations are important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.</p>
 
-<p align="center">
-  <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
-</p>
+
 
 ## ✨ Highlights
 
@@ -29,6 +29,10 @@
 ## 🗂️ Dataset
 
 <p align="justify">To support RGB-Thermal small target detection research in polar environments, we establish AS4000. AS4000 comprises 3,983 paired RGB and thermal images with pixel-level target annotations, focusing on extremely small Arctic seals against heterogeneous ice and water backgrounds. Unlike conventional RGB-T benchmarks dominated by generic objects, AS4000 provides a task-specific dataset for investigating sparse wildlife targets, complex background interference, and complementary modality responses.</p>
+
+<p align="center">
+  <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
+</p>
 
 <p align="justify">The 3,983 paired images are divided into 1,500 training pairs, 500 validation pairs, and 1,983 testing pairs. Approximately 45% of the images contain a single target, and the frequency decreases as the target count increases, indicating a predominantly sparse target distribution. Most targets are concentrated around 10~20 pixels. Furthermore, most targets exhibit relatively low to moderate contrast against surrounding clutter. These statistical characteristics demonstrate the challenges of detecting sparse, extremely small targets under heterogeneous Arctic background conditions.</p>
 
