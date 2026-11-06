@@ -163,8 +163,19 @@ weights/best.pth
 ## Train
 
 ```bash
-python train.py
-torchrun --nproc_per_node=4 train.py
+python train.py \
+  --checkpoint weights/sam3.pt \
+  --rgb_lora weights/rgb_lora.pt \
+  --thermal_lora weights/thermal_lora.pt \
+  --train_data_dir data/train \
+  --val_data_dir data/val
+
+torchrun --nproc_per_node=4 train.py \
+  --checkpoint weights/sam3.pt \
+  --rgb_lora weights/rgb_lora.pt \
+  --thermal_lora weights/thermal_lora.pt \
+  --train_data_dir data/train \
+  --val_data_dir data/val
 ```
 
 The batch size is 1 image per GPU. With more than one GPU, gradients of M1 and LoRA3 are averaged across GPUs. Training runs for 30 epochs by default, and the learning rate is multiplied by 0.1 every 50 epochs. The best validation checkpoint is saved to `train_logs/best.pth`.
@@ -172,7 +183,12 @@ The batch size is 1 image per GPU. With more than one GPU, gradients of M1 and L
 ## Test
 
 ```bash
-python test.py
+python test.py \
+  --checkpoint weights/best.pth \
+  --sam_checkpoint weights/sam3.pt \
+  --rgb_lora weights/rgb_lora.pt \
+  --thermal_lora weights/thermal_lora.pt \
+  --test_data_dir data/test
 ```
 
 This writes one 8-bit probability map per test image to `test_maps/`, at the original image resolution.

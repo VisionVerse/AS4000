@@ -161,8 +161,19 @@ weights/best.pth
 ## 训练
 
 ```bash
-python train.py
-torchrun --nproc_per_node=4 train.py
+python train.py \
+  --checkpoint weights/sam3.pt \
+  --rgb_lora weights/rgb_lora.pt \
+  --thermal_lora weights/thermal_lora.pt \
+  --train_data_dir data/train \
+  --val_data_dir data/val
+
+torchrun --nproc_per_node=4 train.py \
+  --checkpoint weights/sam3.pt \
+  --rgb_lora weights/rgb_lora.pt \
+  --thermal_lora weights/thermal_lora.pt \
+  --train_data_dir data/train \
+  --val_data_dir data/val
 ```
 
 每张 GPU 每次处理 1 张图像。多卡时，M1 和 LoRA3 的梯度在卡间取平均。默认训练 30 个 epoch，学习率每 50 个 epoch 乘以 0.1。验证集上最好的权重保存到 `train_logs/best.pth`。
@@ -170,7 +181,12 @@ torchrun --nproc_per_node=4 train.py
 ## 测试
 
 ```bash
-python test.py
+python test.py \
+  --checkpoint weights/best.pth \
+  --sam_checkpoint weights/sam3.pt \
+  --rgb_lora weights/rgb_lora.pt \
+  --thermal_lora weights/thermal_lora.pt \
+  --test_data_dir data/test
 ```
 
 每张测试图像输出一张 8 位概率图，保存在 `test_maps/`，分辨率为原始图像尺寸。
