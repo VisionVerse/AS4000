@@ -218,3 +218,7 @@ python efficiency.py
   url = {https://github.com/Sompote/SAM3_LoRA}
 }
 ```
+
+## Star 数量变化
+
+[![Star History Chart](https://api.star-history.com/svg?repos=VisionVerse/AS4000&type=Date)](https://www.star-history.com/#VisionVerse/AS4000&Date)

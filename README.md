@@ -220,3 +220,7 @@ The script reports parameters, GFLOPs, and FPS for RGB LoRA, thermal LoRA, LoRA3
   url = {https://github.com/Sompote/SAM3_LoRA}
 }
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=VisionVerse/AS4000&type=Date)](https://www.star-history.com/#VisionVerse/AS4000&Date)
