@@ -26,14 +26,17 @@ pip install -r requirements.txt
 
 ## Download links
 
-The training set, validation set, test set, and weights are shared on Baidu Netdisk. Fill in each link and extraction code.
+The training set, validation set, test set, and the four weight files are on Baidu Netdisk.
 
-| Item | Baidu Netdisk link | Extraction code |
-| --- | --- | --- |
-| Training set |  |  |
-| Validation set |  |  |
-| Test set |  |  |
-| Weights |  |  |
+| Content | Link |
+| --- | --- |
+| Training set | |
+| Validation set | |
+| Test set | |
+| `sam3.pt` | |
+| `rgb_lora.pt` | |
+| `thermal_lora.pt` | |
+| `best.pth` | |
 
 After downloading, arrange the files as follows. If an archive uses different names, edit the path constants in `paths.py` or pass the command-line arguments.
 
