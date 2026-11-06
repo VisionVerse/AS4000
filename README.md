@@ -1,2 +1,2 @@
-# AS1000
-ArcticSeal-1000
+# AS4000
+ArcticSeal-4000
