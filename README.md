@@ -6,15 +6,13 @@ To support RGB-Thermal small target detection research in polar environments, we
 
 ## Method
 
-Accurate detection of Arctic seals in airborne remote sensing imagery is essential for polar wildlife monitoring and ecological assessment. Extremely small target sizes, complex ice backgrounds, and heterogeneous RGB-Thermal (RGB-T) responses make reliable detection difficult. AS4000 is introduced for this task. It contains 3,983 paired RGB and thermal images with pixel-level annotations.
+MLRF-Net detects extremely small Arctic seals in airborne RGB-T imagery, where the targets are tiny, the ice background is cluttered, and the two modalities respond differently. The network combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).
 
-We propose the Multimodal Low-Rank Refinement Fusion Network (MLRF-Net). It integrates Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF). CM-LoRA combines modality-specific adapters with shared low-rank parameters, so the RGB and thermal encoders adapt together while the pretrained weights stay in place and only a small set of parameters is trained. BSRF refines the multimodal features with bidirectional cross-attention and modality-specific spatial refinement. It uses complementary information from the two modalities and improves target localization in complex backgrounds.
+CM-LoRA (`cm_lora.py`) freezes the pretrained [SAM3](https://github.com/Sompote/SAM3_LoRA) encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.
 
-On AS4000, MLRF-Net reaches an IoU of 51.93%, an F<sub>1</sub> score of 68.36%, a detection probability of 89.15%, and a false alarm rate of 17.17×10<sup>-6</sup>. All four accuracy metrics are higher than those of the compared methods. The benchmark and source code are available at [https://github.com/VisionVerse/AS4000](https://github.com/VisionVerse/AS4000).
+BSRF (`M1` in `bisf.py`) exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.
 
-In this repository, CM-LoRA is `cm_lora.py`. Modality-specific LoRA modules are injected into `qkv` and `proj` in the vision trunk and then frozen. Their rank is 16 and alpha is 32. The shared low-rank parameters are LoRA3, with rank 8, alpha 16, and dropout 0.05. LoRA3 is trained, shared by the two modalities, and not registered inside [SAM3](https://github.com/Sompote/SAM3_LoRA). SAM3 itself stays frozen. BSRF is the `M1` module in `bisf.py`. It fuses the last 256-channel FPN level with bidirectional cross-attention, a 3×3 depthwise convolution, and spatial self-attention, without residuals. The fused map is `(R0 + T0) / 2 + Conv1x1(cat(R, T))`, and the 1×1 layer is initialized to zero.
-
-Each image is resized to 1008. The fixed text prompt is `visual`. Ground-truth boxes are positive prompts in normalized `cxcywh` and are passed to the decoder once. Mask logits from the top-k queries, where k is the number of boxes, are merged by a pixel-wise maximum. The training loss is structure loss, sigmoid focal loss, and Dice loss with equal weights. Structure loss is weighted BCE plus weighted IoU. Focal loss uses alpha 0.25 and gamma 2. AdamW uses learning rate `5e-5` and weight decay `0.01`. The checkpoint with the highest validation IoU is kept.
+On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of \(17.17\times10^{-6}\), ahead of the compared methods on all four metrics.
 
 ## Setup
 

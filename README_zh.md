@@ -4,15 +4,13 @@
 
 ## 方法
 
-航空遥感影像中的北极海豹检测对极地野生动物监测和生态评估很重要。目标尺寸极小、冰面背景复杂，而且 RGB 与热红外响应并不一致，这些因素都会影响可靠检测。为此，我们建立了北极海豹小目标检测基准 AS4000，包含 3983 对带像素级标注的 RGB 与热红外图像。
+MLRF-Net 面向航空 RGB-T 图像中的极小北极海豹检测。目标尺寸很小，冰面背景复杂，两路模态的响应也不一致。网络由跨模态低秩适配（CM-LoRA）和双向空间细化融合（BSRF）组成。
 
-我们提出多模态低秩精炼融合网络 MLRF-Net（Multimodal Low-Rank Refinement Fusion Network）。它由跨模态低秩自适应 CM-LoRA（Cross-Modal Low-Rank Adaptation）和双向空间精炼融合 BSRF（Bidirectional Spatial Refinement Fusion）组成。CM-LoRA 把模态特定适配器与共享低秩参数结合起来，使 RGB 编码器和热红外编码器能够协同适应，同时保留预训练知识，并且只训练少量参数。BSRF 通过双向交叉注意力和各模态自己的空间精炼增强多模态表示，利用两种模态的互补信息，并改善复杂背景下的目标定位。
+CM-LoRA（`cm_lora.py`）冻结预训练的 [SAM3](https://github.com/Sompote/SAM3_LoRA) 编码器，在 RGB 和热红外分支上分别使用模态适配器，再用一组共享低秩参数协同更新两路特征，从而在保留预训练知识的同时完成轻量适配。
 
-在 AS4000 上，MLRF-Net 的 IoU 为 51.93%，F<sub>1</sub> 为 68.36%，检测概率为 89.15%，虚警率为 17.17×10<sup>-6</sup>。这四项精度指标都高于所比较的方法。AS4000 基准和源代码发布于 [https://github.com/VisionVerse/AS4000](https://github.com/VisionVerse/AS4000)。
+BSRF（`bisf.py` 中的 `M1`）先用双向交叉注意力交换两路特征，再分别做空间细化。融合后的表示吸收互补信息，便于在复杂背景中定位小目标。
 
-本仓库中，CM-LoRA 写在 `cm_lora.py`。模态特定 LoRA 注入视觉主干的 `qkv` 与 `proj`，随后冻结，秩为 16，alpha 为 32。共享低秩参数是 LoRA3，秩为 8，alpha 为 16，dropout 为 0.05。LoRA3 参与训练，由两路模态共用，并且不注册进 [SAM3](https://github.com/Sompote/SAM3_LoRA)。SAM3 本身保持冻结。BSRF 是 `bisf.py` 中的 `M1`。它融合最后一层 256 维 FPN 特征，依次进行双向交叉注意力、3×3 深度卷积和空间自注意力，这三步都不加残差。融合结果为 `(R0 + T0) / 2 + Conv1x1(cat(R, T))`，1×1 卷积初始化为 0。
-
-每张图像缩放到 1008。文本提示固定为 `visual`。数据集中的真实框作为正提示，使用归一化 `cxcywh`，只送入解码器一次。取与框数相同的 top-k 个 query，对 mask logits 做逐像素最大值合并。训练损失是等权的结构损失、Sigmoid Focal Loss 和 Dice Loss。结构损失由加权 BCE 和加权 IoU 组成。Focal Loss 的 alpha 为 0.25，gamma 为 2。优化器是 AdamW，学习率 `5e-5`，权重衰减 `0.01`。验证集 IoU 最高的权重会被保留。
+在 AS4000 上，MLRF-Net 的 IoU 为 51.93%，\(F_1\) 为 68.36%，检测概率为 89.15%，虚警率为 \(17.17\times10^{-6}\)，四项精度指标均高于所比较的方法。
 
 ## 环境
 
