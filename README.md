@@ -89,30 +89,6 @@ data/test/...
 
 
 
-## 📦 Download
-
-<p align="justify">Three pretrained weights, one best trained model, and the prediction results are on Baidu Netdisk.</p>
-
-<div align="center">
-
-| Content | Description | Link |
-| :---: | :---: | :---: |
-| `sam3.pt` | Frozen SAM3 checkpoint for training and testing. | [Baidu Netdisk](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
-| `rgb_lora.pt` | Frozen LoRA weights for the RGB branch. | [Baidu Netdisk](https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA) |
-| `thermal_lora.pt` | Frozen LoRA weights for the thermal branch. | [Baidu Netdisk](https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA) |
-| `best.pth` | Trained BSRF and CM-LoRA weights for testing. | [Baidu Netdisk](https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best) |
-| Prediction results | Precomputed test probability maps for evaluation. | [Baidu Netdisk](https://pan.baidu.com/s/12qjWecExrdNCf_wFrBwfZA?pwd=pred) |
-
-</div>
-
-<p align="justify">The recommended directory layout for the weights is as follows. If it differs, specify the paths through command-line arguments when running.</p>
-
-```text
-weights/sam3.pt
-weights/rgb_lora.pt
-weights/thermal_lora.pt
-weights/best.pth
-```
 
 ## 🚀 Train
 
@@ -143,6 +119,33 @@ torchrun --nproc_per_node=4 train.py \
   --val_data_dir data/val \
   --save_path train_logs
 ```
+
+
+## 📦 Pretrained Weights
+
+<p align="justify">Three pretrained weights, one best trained model, and the prediction results are on Baidu Netdisk.</p>
+
+<div align="center">
+
+| Content | Description | Link |
+| :---: | :---: | :---: |
+| `sam3.pt` | Frozen SAM3 checkpoint for training and testing. | [Baidu Netdisk](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
+| `rgb_lora.pt` | Frozen LoRA weights for the RGB branch. | [Baidu Netdisk](https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA) |
+| `thermal_lora.pt` | Frozen LoRA weights for the thermal branch. | [Baidu Netdisk](https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA) |
+| `best.pth` | Trained BSRF and CM-LoRA weights for testing. | [Baidu Netdisk](https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best) |
+| Prediction results | Precomputed test probability maps for evaluation. | [Baidu Netdisk](https://pan.baidu.com/s/12qjWecExrdNCf_wFrBwfZA?pwd=pred) |
+
+</div>
+
+<p align="justify">The recommended directory layout for the weights is as follows. If it differs, specify the paths through command-line arguments when running.</p>
+
+```text
+weights/sam3.pt
+weights/rgb_lora.pt
+weights/thermal_lora.pt
+weights/best.pth
+```
+
 
 ## 🔎 Test
 
