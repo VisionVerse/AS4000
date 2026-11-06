@@ -98,14 +98,19 @@ python efficiency.py
 ## 引用
 
 ```bibtex
-@misc{carion2025sam3segmentconcepts,
-      title={SAM 3: Segment Anything with Concepts},
-      author={Nicolas Carion and Laura Gustafson and Yuan-Ting Hu and Shoubhik Debnath and Ronghang Hu and Didac Suris and Chaitanya Ryali and Kalyan Vasudev Alwala and Haitham Khedr and Andrew Huang and Jie Lei and Tengyu Ma and Baishan Guo and Arpit Kalla and Markus Marks and Joseph Greer and Meng Wang and Peize Sun and Roman Rädle and Triantafyllos Afouras and Effrosyni Mavroudi and Katherine Xu and Tsung-Han Wu and Yu Zhou and Liliane Momeni and Rishi Hazra and Shuangrui Ding and Sagar Vaze and Francois Porcher and Feng Li and Siyuan Li and Aishwarya Kamath and Ho Kei Cheng and Piotr Dollár and Nikhila Ravi and Kate Saenko and Pengchuan Zhang and Christoph Feichtenhofer},
-      year={2025},
-      eprint={2511.16719},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2511.16719},
+% 在这里粘贴本论文的 BibTeX。
+```
+
+## 参考文献
+
+```bibtex
+@inproceedings{carion2026sam,
+  title={Sam 3: Segment anything with concepts},
+  author={Carion, Nicolas and Gustafson, Laura and Hu, Yuan-Ting and Debnath, Shoubhik and Hu, Ronghang and Suris Coll-Vinent, Didac and Ryali, Chaitanya and Alwala, Kalyan Vasudev and Khedr, Haitham and Huang, Andrew and others},
+  booktitle={International conference on learning representations},
+  volume={2026},
+  pages={138846--138923},
+  year={2026}
 }
 
 @software{sam3_lora,
