@@ -26,7 +26,7 @@
   <tr><td align="center">✂️ Split</td><td align="center">1,500 train / 500 val / 1,983 test</td></tr>
 </table>
 
-## 🗂️ Dataset
+## 🗂️ AS4000: RGB-Thermal Arctic Seal Small Target Detection Dataset
 
 <p align="justify">To support RGB-Thermal small target detection research in polar environments, we establish AS4000. AS4000 comprises 3,983 paired RGB and thermal images with pixel-level target annotations, focusing on extremely small Arctic seals against heterogeneous ice and water backgrounds. Unlike conventional RGB-T benchmarks dominated by generic objects, AS4000 provides a task-specific dataset for investigating sparse wildlife targets, complex background interference, and complementary modality responses.</p>
 
@@ -80,7 +80,7 @@ data/test/...
 
 ![MLRF-Net framework](assets/mlrf-net-v4.png)
 
-### Quantitative
+### (1) Quantitative
 
 <div align="justify">
 
@@ -109,7 +109,7 @@ On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability,
 
 </div>
 
-### Qualitative
+### (2) Qualitative
 
 <p align="justify">The qualitative visualization of MLRF-Net and the compared methods clearly shows the advantage of MLRF-Net.</p>
 
