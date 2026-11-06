@@ -10,11 +10,104 @@ To support RGB-Thermal small target detection research in polar environments, we
 
 MLRF-Net detects extremely small Arctic seals in airborne RGB-T imagery, where the targets are tiny, the ice background is cluttered, and the two modalities respond differently. The network combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).
 
-CM-LoRA (`cm_lora.py`) freezes the pretrained [SAM3](https://github.com/Sompote/SAM3_LoRA) encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.
+CM-LoRA freezes the pretrained [SAM3](https://github.com/Sompote/SAM3_LoRA) encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.
 
-BSRF (`M1` in `bisf.py`) exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.
+BSRF exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.
 
 On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of 17.17×10<sup>-6</sup>, ahead of the compared methods on all four metrics.
+
+<table>
+  <caption>Comparison of efficiency and accuracy on AS4000. <em>F</em><sub>a</sub> is reported in units of 10<sup>-6</sup>. ↑ means higher is better, and ↓ means lower is better. The best result in each column is shown in <strong style="color:#d1242f">bold red</strong>, and the second-best result in <span style="color:#0969da">blue</span>.</caption>
+  <thead>
+    <tr>
+      <th rowspan="2" align="left">Methods</th>
+      <th rowspan="2" align="left">Pub.</th>
+      <th colspan="3" align="center">Efficiency</th>
+      <th colspan="4" align="center">Accuracy</th>
+    </tr>
+    <tr>
+      <th align="center">Params ↓</th>
+      <th align="center">GFLOPs ↓</th>
+      <th align="center">FPS ↑</th>
+      <th align="center">IoU ↑</th>
+      <th align="center"><em>F</em><sub>1</sub> ↑</th>
+      <th align="center"><em>P</em><sub>d</sub> ↑</th>
+      <th align="center"><em>F</em><sub>a</sub> ↓</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DNA-Net</td><td>TIP, 2023</td>
+      <td align="center">4.70</td><td align="center">14.28</td><td align="center">64.20</td>
+      <td align="center">30.00</td><td align="center">46.15</td><td align="center">79.05</td><td align="center">87.30</td>
+    </tr>
+    <tr>
+      <td>UIU-Net</td><td>TIP, 2023</td>
+      <td align="center">50.54</td><td align="center">54.50</td><td align="center">118.40</td>
+      <td align="center">21.49</td><td align="center">35.37</td><td align="center">68.74</td><td align="center">29.65</td>
+    </tr>
+    <tr>
+      <td>MSHNet</td><td>CVPR, 2024</td>
+      <td align="center">4.07</td><td align="center"><span style="color:#0969da">6.11</span></td><td align="center">152.30</td>
+      <td align="center">29.23</td><td align="center">45.23</td><td align="center">80.94</td><td align="center">67.28</td>
+    </tr>
+    <tr>
+      <td>RPCANet</td><td>WACV, 2024</td>
+      <td align="center"><strong style="color:#d1242f">0.68</strong></td><td align="center">44.57</td><td align="center">211.30</td>
+      <td align="center">30.64</td><td align="center">46.91</td><td align="center">80.62</td><td align="center">77.57</td>
+    </tr>
+    <tr>
+      <td>SCTransNet</td><td>TGRS, 2024</td>
+      <td align="center">11.33</td><td align="center">10.12</td><td align="center">109.20</td>
+      <td align="center">20.29</td><td align="center">33.74</td><td align="center">62.21</td><td align="center">25.28</td>
+    </tr>
+    <tr>
+      <td>HDNet</td><td>TGRS, 2025</td>
+      <td align="center">3.68</td><td align="center"><strong style="color:#d1242f">5.70</strong></td><td align="center">85.50</td>
+      <td align="center">27.26</td><td align="center">42.84</td><td align="center"><span style="color:#0969da">82.14</span></td><td align="center">54.50</td>
+    </tr>
+    <tr>
+      <td>BGM</td><td>TGRS, 2025</td>
+      <td align="center">4.08</td><td align="center">6.77</td><td align="center"><span style="color:#0969da">212.10</span></td>
+      <td align="center"><span style="color:#0969da">30.74</span></td><td align="center"><span style="color:#0969da">47.02</span></td><td align="center">78.68</td><td align="center">96.32</td>
+    </tr>
+    <tr>
+      <td>ILNet</td><td>TAES, 2025</td>
+      <td align="center">4.04</td><td align="center">21.42</td><td align="center">108.40</td>
+      <td align="center">19.17</td><td align="center">32.18</td><td align="center">58.95</td><td align="center"><span style="color:#0969da">19.30</span></td>
+    </tr>
+    <tr>
+      <td>DRPCA-Net</td><td>TGRS, 2025</td>
+      <td align="center">1.17</td><td align="center">73.84</td><td align="center">11.20</td>
+      <td align="center">29.99</td><td align="center">46.14</td><td align="center">76.85</td><td align="center">104.04</td>
+    </tr>
+    <tr>
+      <td>L2SKNet</td><td>TGRS, 2025</td>
+      <td align="center"><span style="color:#0969da">0.90</span></td><td align="center">6.90</td><td align="center"><strong style="color:#d1242f">332.20</strong></td>
+      <td align="center">30.09</td><td align="center">46.26</td><td align="center">77.20</td><td align="center">86.24</td>
+    </tr>
+    <tr>
+      <td>RPCANet++</td><td>TPAMI, 2026</td>
+      <td align="center">2.96</td><td align="center">190.67</td><td align="center">80.40</td>
+      <td align="center">30.10</td><td align="center">46.27</td><td align="center">76.92</td><td align="center">88.16</td>
+    </tr>
+    <tr>
+      <td>DURD</td><td>TGRS, 2026</td>
+      <td align="center">2.47</td><td align="center">52.85</td><td align="center">125.30</td>
+      <td align="center">30.06</td><td align="center">46.23</td><td align="center">77.58</td><td align="center">102.84</td>
+    </tr>
+    <tr>
+      <td>SAM3</td><td>ICLR, 2026</td>
+      <td align="center">473.59</td><td align="center">7149.94</td><td align="center">3.30</td>
+      <td align="center">22.47</td><td align="center">36.70</td><td align="center">68.79</td><td align="center">350.80</td>
+    </tr>
+    <tr>
+      <td><strong>Ours</strong></td><td>--</td>
+      <td align="center">9.09</td><td align="center">110.11</td><td align="center">13.61</td>
+      <td align="center"><strong style="color:#d1242f">51.93</strong></td><td align="center"><strong style="color:#d1242f">68.36</strong></td><td align="center"><strong style="color:#d1242f">89.15</strong></td><td align="center"><strong style="color:#d1242f">17.17</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Setup
 
