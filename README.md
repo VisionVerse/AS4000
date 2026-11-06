@@ -8,7 +8,7 @@ To support RGB-Thermal small target detection research in polar environments, we
 
 The code trains and evaluates the full model.
 
-- SAM3 is frozen.
+- [SAM3](https://github.com/Sompote/SAM3_LoRA) is frozen.
 - An RGB LoRA and a thermal LoRA are injected into `qkv` and `proj` in the vision trunk, then frozen. Rank is 16 and alpha is 32.
 - One shared LoRA3 is attached to the same linear layers and is trained. Rank is 8, alpha is 16, and dropout is 0.05. Its parameters are shared by the two modalities and are not registered inside SAM3.
 - BISF (`M1` in `bisf.py`) fuses the last 256-channel FPN level and is trained. It runs bidirectional spatial cross-attention, a 3x3 depthwise convolution, and spatial self-attention, all without residuals. The fused map is `(R0 + T0) / 2 + Conv1x1(cat(R, T))`, and the 1x1 layer is zero-initialized.
@@ -23,7 +23,7 @@ Use a Linux machine with an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.
 pip install -r requirements.txt
 ```
 
-`third_party/sam3` is the SAM 3 package imported by this repository. It is SAM material from Meta and remains under the license in `third_party/sam3/LICENSE`.
+`third_party/sam3` is the SAM 3 package imported by this repository. It comes from [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA). The SAM 3 code is SAM material from Meta and remains under the license in `third_party/sam3/LICENSE`.
 
 ## Download links
 
@@ -98,3 +98,16 @@ The script reports parameters, GFLOPs, and FPS for RGB LoRA, thermal LoRA, LoRA3
 ## Citation
 
 AS4000 is derived from the NOAA Arctic Seals 2019 aerial survey imagery (AFSC2026). This repository uses SAM 3 under the SAM License.
+
+SAM3 and its LoRA implementation follow [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA):
+
+```bibtex
+@software{sam3_lora,
+  title = {SAM3-LoRA: Low-Rank Adaptation for Fine-Tuning},
+  author = {AI Research Group, KMUTT},
+  year = {2026},
+  version = {0.3.0},
+  organization = {King Mongkut's University of Technology Thonburi},
+  url = {https://github.com/Sompote/SAM3_LoRA}
+}
+```

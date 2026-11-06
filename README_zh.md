@@ -6,7 +6,7 @@
 
 本仓库训练和测试的是完整模型。
 
-- SAM3 保持冻结。
+- [SAM3](https://github.com/Sompote/SAM3_LoRA) 保持冻结。
 - RGB LoRA 和热红外 LoRA 注入视觉主干的 `qkv` 与 `proj`，随后冻结。秩为 16，alpha 为 32。
 - 共享 LoRA3 挂在同一批线性层上并参与训练。秩为 8，alpha 为 16，dropout 为 0.05。两路模态共用这一组参数，且该参数不注册进 SAM3。
 - BISF（`bisf.py` 中的 `M1`）融合最后一层 256 维 FPN 特征并参与训练。它依次进行双向空间交叉注意力、3x3 深度卷积和空间自注意力，这三步都不加残差。融合结果为 `(R0 + T0) / 2 + Conv1x1(cat(R, T))`，1x1 卷积初始化为 0。
@@ -21,7 +21,7 @@
 pip install -r requirements.txt
 ```
 
-`third_party/sam3` 是本仓库实际导入的 SAM 3 代码，属于 Meta 的 SAM 材料，许可见 `third_party/sam3/LICENSE`。
+`third_party/sam3` 是本仓库实际导入的 SAM 3 代码，来自 [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA)。其中的 SAM 3 代码属于 Meta 的 SAM 材料，许可见 `third_party/sam3/LICENSE`。
 
 ## 下载链接
 
@@ -96,3 +96,16 @@ python efficiency.py
 ## 引用
 
 AS4000 来自 NOAA Arctic Seals 2019 航空调查影像（AFSC2026）。本仓库在 SAM License 下使用 SAM 3。
+
+SAM3 及其 LoRA 实现遵循 [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA)：
+
+```bibtex
+@software{sam3_lora,
+  title = {SAM3-LoRA: Low-Rank Adaptation for Fine-Tuning},
+  author = {AI Research Group, KMUTT},
+  year = {2026},
+  version = {0.3.0},
+  organization = {King Mongkut's University of Technology Thonburi},
+  url = {https://github.com/Sompote/SAM3_LoRA}
+}
+```
