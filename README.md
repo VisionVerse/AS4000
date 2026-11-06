@@ -24,7 +24,6 @@ AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB
 | Targets | 12,554 seals, 3.15 per image |
 | Labels | Pixel masks and bounding boxes |
 | Target size | Most seals cover about 10–20 pixels |
-| Source | NOAA Arctic Seals 2019 aerial survey (AFSC2026) |
 | Split | 1,500 train / 500 val / 1,983 test |
 
 ## Dataset
@@ -33,12 +32,12 @@ AS4000 is built for RGB–thermal small-target detection in polar environments. 
 
 RGB records surface texture, ice structure, and the visible appearance of a seal: broken sea ice, irregular ice edges, and fine surface patterns. Thermal records radiation. Its background intensity and spatial pattern change substantially from the RGB view. The two signals are complementary and inconsistent. A seal can look like a piece of ice, or like a small thermal glitch.
 
-| Split | Images | Targets | Per image | Use |
-| --- | ---: | ---: | ---: | --- |
-| Train | 1,500 | 4,300 | 2.87 | Optimization |
-| Validation | 500 | 871 | 1.74 | Model selection |
-| Test | 1,983 | 7,383 | 3.72 | Held out |
-| **Total** | **3,983** | **12,554** | **3.15** | |
+| Split | Images | Targets | Per image |
+| --- | ---: | ---: | ---: |
+| Train | 1,500 | 4,300 | 2.87 |
+| Validation | 500 | 871 | 1.74 |
+| Test | 1,983 | 7,383 | 3.72 |
+| **Total** | **3,983** | **12,554** | **3.15** |
 
 The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.
 
@@ -164,14 +163,6 @@ python evaluate.py --pred_root test_maps
 ```
 
 The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.
-
-## Efficiency
-
-```bash
-python efficiency.py
-```
-
-The script reports parameters, GFLOPs, and FPS for RGB LoRA, thermal LoRA, LoRA3, and BSRF. LoRA3 is executed on both modalities, so its compute is counted twice. The SAM3 trunk, decoder, and text encoder are left out of the total. One multiply-add counts as 1 GFLOP / 1e9.
 
 ## Citation
 
