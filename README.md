@@ -1,6 +1,12 @@
 # AS4000: A Benchmark for RGB-Thermal Arctic Seal Small Target Detection via Multimodal Low-Rank Adaptation Fusion
 
-[![Stars](https://img.shields.io/github/stars/VisionVerse/AS4000?style=social)](https://github.com/VisionVerse/AS4000/stargazers)
+<p align="center">
+  <img src="https://img.shields.io/badge/Scene-Arctic%20Remote%20Sensing-2ea44f" alt="Scene">
+  <img src="https://img.shields.io/badge/Task-RGB--Thermal%20Small%20Target%20Detection-6f42c1" alt="Task">
+  <img src="https://img.shields.io/badge/Python-3.12-1f6feb" alt="Python">
+  <img src="https://img.shields.io/badge/PyTorch-2.7-cf222e" alt="PyTorch">
+  <img src="https://img.shields.io/github/stars/VisionVerse/AS4000?style=flat&label=Stars&color=daaa00" alt="Stars">
+</p>
 
 **🖼️ 3,983** paired aerial images · **🦭 12,554** seals · **📐 mostly 10–20** pixels · **🏷️ pixel-level masks**
 
@@ -18,12 +24,12 @@ AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB
 
 ## ✨ Highlights
 
-<table>
-  <tr><td>🖼️ Pairs</td><td>3,983 spatially aligned RGB–thermal images</td></tr>
-  <tr><td>🦭 Targets</td><td>12,554 seals, 3.15 per image</td></tr>
-  <tr><td>🏷️ Labels</td><td>Pixel masks and bounding boxes</td></tr>
-  <tr><td>📐 Target size</td><td>Most seals cover about 10–20 pixels</td></tr>
-  <tr><td>✂️ Split</td><td>1,500 train / 500 val / 1,983 test</td></tr>
+<table align="center">
+  <tr><td align="center">🖼️ Pairs</td><td align="center">3,983 spatially aligned RGB–thermal images</td></tr>
+  <tr><td align="center">🦭 Targets</td><td align="center">12,554 seals, 3.15 per image</td></tr>
+  <tr><td align="center">🏷️ Labels</td><td align="center">Pixel masks and bounding boxes</td></tr>
+  <tr><td align="center">📐 Target size</td><td align="center">Most seals cover about 10–20 pixels</td></tr>
+  <tr><td align="center">✂️ Split</td><td align="center">1,500 train / 500 val / 1,983 test</td></tr>
 </table>
 
 ## 🗂️ Dataset
@@ -33,7 +39,7 @@ AS4000 is built for RGB–thermal small-target detection in polar environments. 
 RGB records surface texture, ice structure, and the visible appearance of a seal: broken sea ice, irregular ice edges, and fine surface patterns. Thermal records radiation. Its background intensity and spatial pattern change substantially from the RGB view. The two signals are complementary and inconsistent. A seal can look like a piece of ice, or like a small thermal glitch.
 
 | Split | Images | Targets | Per image | Download |
-| --- | ---: | ---: | ---: | --- |
+| :---: | :---: | :---: | :---: | :---: |
 | Train | 1,500 | 4,300 | 2.87 | [Baidu Netdisk](https://pan.baidu.com/s/1jybcryZ1uE8vph3uX5hVKw?pwd=Seal) |
 | Validation | 500 | 871 | 1.74 | [Email](mailto:1546144577@qq.com) |
 | Test | 1,983 | 7,383 | 3.72 | [Email](mailto:1546144577@qq.com) |
@@ -66,7 +72,7 @@ On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability,
 Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in units of 10<sup>-6</sup>. ↑ means higher is better, and ↓ means lower is better. The best result in each column is shown in $\color{red}{\pmb{\mathrm{bold\ red}}}$, and the second-best result in $\color{blue}{\mathrm{blue}}$.
 
 | Methods | Pub. | Params ↓ | GFLOPs ↓ | FPS ↑ | IoU ↑ | F<sub>1</sub> ↑ | P<sub>d</sub> ↑ | F<sub>a</sub> ↓ |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | DNA-Net | TIP, 2023 | 4.70 | 14.28 | 64.20 | 30.00 | 46.15 | 79.05 | 87.30 |
 | UIU-Net | TIP, 2023 | 50.54 | 54.50 | 118.40 | 21.49 | 35.37 | 68.74 | 29.65 |
 | MSHNet | CVPR, 2024 | 4.07 | $\color{blue}{6.11}$ | 152.30 | 29.23 | 45.23 | 80.94 | 67.28 |
@@ -97,7 +103,7 @@ pip install -r requirements.txt
 The four weight files and the prediction results are on Baidu Netdisk.
 
 | Content | Link |
-| --- | --- |
+| :---: | :---: |
 | `sam3.pt` | [Baidu Netdisk](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
 | `rgb_lora.pt` | [Baidu Netdisk](https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA) |
 | `thermal_lora.pt` | [Baidu Netdisk](https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA) |
