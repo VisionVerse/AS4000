@@ -28,13 +28,13 @@ pip install -r requirements.txt
 
 | 内容 | 链接 |
 | --- | --- |
-| 训练集 | https://pan.baidu.com/s/1jybcryZ1uE8vph3uX5hVKw?pwd=Seal |
-| 验证集 | [1546144577@qq.com](mailto:1546144577@qq.com) |
-| 测试集 | [1546144577@qq.com](mailto:1546144577@qq.com) |
-| `sam3.pt` | https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3 |
-| `rgb_lora.pt` | https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA |
-| `thermal_lora.pt` | https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA |
-| `best.pth` | https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best |
+| 训练集 | [【百度网盘】](https://pan.baidu.com/s/1jybcryZ1uE8vph3uX5hVKw?pwd=Seal) |
+| 验证集 | [【邮箱】](mailto:1546144577@qq.com) |
+| 测试集 | [【邮箱】](mailto:1546144577@qq.com) |
+| `sam3.pt` | [【百度网盘】](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
+| `rgb_lora.pt` | [【百度网盘】](https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA) |
+| `thermal_lora.pt` | [【百度网盘】](https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA) |
+| `best.pth` | [【百度网盘】](https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best) |
 
 下载后按下面的结构放置。如果压缩包里的文件名不同，修改 `paths.py` 里的路径，或在命令行传入对应参数。
 
