@@ -72,17 +72,20 @@ data/test/...
 
 ## 🧠 Baseline: Multimodal Low-Rank Refinement Fusion Network (MLRF-Net)
 
-<p align="justify">This repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).</p>
+<p align="justify">This repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. 
+  MLRF-Net combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).</p>
 
-<p align="justify">CM-LoRA freezes the pretrained <a href="https://github.com/Sompote/SAM3_LoRA">SAM3</a> encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.</p>
-
-<p align="justify">BSRF exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.</p>
+- **Cross-Modal Low-Rank Adaptation (CM-LoRA):** A parameter-efficient adaptation mechanism combining modality-specific and shared low-rank parameters to facilitate collaborative learning across RGB and thermal encoders.
+- **Bidirectional Spatial Refinement Fusion (BSRF):** A feature fusion module integrating bidirectional cross-attention and modality-specific spatial refinement to enhance target localization and suppress background interference.
 
 ![MLRF-Net framework](assets/mlrf-net-v4.png)
 
 
-- **Cross-Modal Low-Rank Adaptation (CM-LoRA):** A parameter-efficient adaptation mechanism combining modality-specific and shared low-rank parameters to facilitate collaborative learning across RGB and thermal encoders.
-- **Bidirectional Spatial Refinement Fusion (BSRF):** A feature fusion module integrating bidirectional cross-attention and modality-specific spatial refinement to enhance target localization and suppress background interference.
+<p align="justify">
+  CM-LoRA freezes the pretrained <a href="https://github.com/Sompote/SAM3_LoRA">SAM3</a> encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact. BSRF exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.
+</p>
+
+
 
 ## 🛠️ Setup
 
