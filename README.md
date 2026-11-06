@@ -87,15 +87,7 @@ data/test/...
 
 
 
-## 🛠️ Setup
 
-<p align="justify">Linux, an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.</p>
-
-```bash
-pip install -r requirements.txt
-```
-
-<p align="justify"><code>third_party/sam3</code> is the SAM 3 package imported by this repository. It comes from <a href="https://github.com/Sompote/SAM3_LoRA">SAM3-LoRA</a>. The SAM 3 code is SAM material from Meta and remains under the license in <code>third_party/sam3/LICENSE</code>.</p>
 
 ## 📦 Download
 
@@ -123,6 +115,14 @@ weights/best.pth
 ```
 
 ## 🚀 Train
+
+<p align="justify">Linux, an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.</p>
+
+```bash
+pip install -r requirements.txt
+```
+
+<p align="justify"><code>third_party/sam3</code> is the SAM 3 package imported by this repository. It comes from <a href="https://github.com/Sompote/SAM3_LoRA">SAM3-LoRA</a>. The SAM 3 code is SAM material from Meta and remains under the license in <code>third_party/sam3/LICENSE</code>.</p>
 
 <p align="justify">Use the first command to train on one GPU, and the second to train on multiple GPUs.</p>
 
