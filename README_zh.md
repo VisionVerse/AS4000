@@ -97,11 +97,17 @@ python efficiency.py
 
 ## 引用
 
-AS4000 来自 NOAA Arctic Seals 2019 航空调查影像（AFSC2026）。本仓库在 SAM License 下使用 SAM 3。
-
-SAM3 及其 LoRA 实现遵循 [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA)：
-
 ```bibtex
+@misc{carion2025sam3segmentconcepts,
+      title={SAM 3: Segment Anything with Concepts},
+      author={Nicolas Carion and Laura Gustafson and Yuan-Ting Hu and Shoubhik Debnath and Ronghang Hu and Didac Suris and Chaitanya Ryali and Kalyan Vasudev Alwala and Haitham Khedr and Andrew Huang and Jie Lei and Tengyu Ma and Baishan Guo and Arpit Kalla and Markus Marks and Joseph Greer and Meng Wang and Peize Sun and Roman Rädle and Triantafyllos Afouras and Effrosyni Mavroudi and Katherine Xu and Tsung-Han Wu and Yu Zhou and Liliane Momeni and Rishi Hazra and Shuangrui Ding and Sagar Vaze and Francois Porcher and Feng Li and Siyuan Li and Aishwarya Kamath and Ho Kei Cheng and Piotr Dollár and Nikhila Ravi and Kate Saenko and Pengchuan Zhang and Christoph Feichtenhofer},
+      year={2025},
+      eprint={2511.16719},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.16719},
+}
+
 @software{sam3_lora,
   title = {SAM3-LoRA: Low-Rank Adaptation for Fine-Tuning},
   author = {AI Research Group, KMUTT},

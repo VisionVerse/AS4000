@@ -99,11 +99,17 @@ The script reports parameters, GFLOPs, and FPS for RGB LoRA, thermal LoRA, LoRA3
 
 ## Citation
 
-AS4000 is derived from the NOAA Arctic Seals 2019 aerial survey imagery (AFSC2026). This repository uses SAM 3 under the SAM License.
-
-SAM3 and its LoRA implementation follow [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA):
-
 ```bibtex
+@misc{carion2025sam3segmentconcepts,
+      title={SAM 3: Segment Anything with Concepts},
+      author={Nicolas Carion and Laura Gustafson and Yuan-Ting Hu and Shoubhik Debnath and Ronghang Hu and Didac Suris and Chaitanya Ryali and Kalyan Vasudev Alwala and Haitham Khedr and Andrew Huang and Jie Lei and Tengyu Ma and Baishan Guo and Arpit Kalla and Markus Marks and Joseph Greer and Meng Wang and Peize Sun and Roman Rädle and Triantafyllos Afouras and Effrosyni Mavroudi and Katherine Xu and Tsung-Han Wu and Yu Zhou and Liliane Momeni and Rishi Hazra and Shuangrui Ding and Sagar Vaze and Francois Porcher and Feng Li and Siyuan Li and Aishwarya Kamath and Ho Kei Cheng and Piotr Dollár and Nikhila Ravi and Kate Saenko and Pengchuan Zhang and Christoph Feichtenhofer},
+      year={2025},
+      eprint={2511.16719},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.16719},
+}
+
 @software{sam3_lora,
   title = {SAM3-LoRA: Low-Rank Adaptation for Fine-Tuning},
   author = {AI Research Group, KMUTT},
