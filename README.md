@@ -55,6 +55,8 @@ train/   val/   test/
 └── GT/*.png
 ```
 
+<p align="justify">The recommended directory layout for the dataset is as follows.</p>
+
 ```text
 data/train/RGB/*.jpg
 data/train/T/*.tif
