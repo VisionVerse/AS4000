@@ -12,7 +12,7 @@ CM-LoRA (`cm_lora.py`) freezes the pretrained [SAM3](https://github.com/Sompote/
 
 BSRF (`M1` in `bisf.py`) exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.
 
-On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of \(17.17\times10^{-6}\), ahead of the compared methods on all four metrics.
+On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of 17.17×10<sup>-6</sup>, ahead of the compared methods on all four metrics.
 
 ## Setup
 
