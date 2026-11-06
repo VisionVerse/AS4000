@@ -137,7 +137,7 @@ pip install -r requirements.txt
 
 </div>
 
-<p align="justify">Place the downloaded files as follows. If an archive uses different names, edit the paths in <code>paths.py</code> or pass them on the command line.</p>
+<p align="justify">The recommended directory layout for the weights is as follows. If it differs, specify the paths through command-line arguments when running.</p>
 
 ```text
 weights/sam3.pt
