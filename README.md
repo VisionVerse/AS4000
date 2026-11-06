@@ -16,10 +16,6 @@
   <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
 </p>
 
-<p align="center">
-  RGB shows ice texture. Thermal shows a different radiation pattern. The seal is only a few pixels wide.
-</p>
-
 ## ✨ Highlights
 
 <table align="center">
@@ -49,15 +45,15 @@
 
 <p align="center"><img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="32%"> <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="32%"> <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="32%"></p>
 
-<p align="justify">The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.</p>
-
-<p align="justify">Each sample uses the same file stem across four folders:</p>
+<p align="justify">The training, validation, and test splits use the same layout. Each sample keeps one file stem in all four folders. <code>RGB</code> stores the visible image, <code>T</code> the thermal image, <code>box</code> the pixel <code>xyxy</code> boxes with one box per line, and <code>GT</code> the mask, where pixels above 128 are foreground. Thermal TIFF values must keep the normalization in <code>data.py</code>, so the frozen thermal LoRA sees the distribution it was trained on.</p>
 
 ```text
-RGB/*.jpg    T/*.tif    box/*.txt    GT/*.png
+train/   val/   test/
+├── RGB/*.jpg
+├── T/*.tif
+├── box/*.txt
+└── GT/*.png
 ```
-
-<p align="justify">Boxes are pixel <code>xyxy</code>, one box per line. Mask pixels above 128 are foreground. Thermal TIFF values must keep the normalization in <code>data.py</code>, so the frozen thermal LoRA sees the distribution it was trained on.</p>
 
 ## 🧠 Baseline: MLRF-Net
 
