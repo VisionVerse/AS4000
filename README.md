@@ -45,6 +45,8 @@
 
 </div>
 
+<p align="justify">The 3,983 paired images are divided into 1,500 training pairs, 500 validation pairs, and 1,983 testing pairs. Approximately 45% of the images contain a single target, and the frequency decreases as the target count increases, indicating a predominantly sparse target distribution. Most targets are concentrated around 10~20 pixels. Furthermore, most targets exhibit relatively low to moderate contrast against surrounding clutter. These statistical characteristics demonstrate the challenges of detecting sparse, extremely small targets under heterogeneous Arctic background conditions.</p>
+
 <p align="center"><img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="32%"> <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="32%"> <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="32%"></p>
 
 <p align="justify">The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.</p>
