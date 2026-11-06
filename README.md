@@ -39,6 +39,12 @@ RGB records surface texture, ice structure, and the visible appearance of a seal
 | Test | 1,983 | 7,383 | 3.72 |
 | **Total** | **3,983** | **12,554** | **3.15** |
 
+<p align="center">
+  <img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="32%">
+  <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="32%">
+  <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="32%">
+</p>
+
 The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.
 
 Each sample uses the same file stem across four folders:

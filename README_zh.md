@@ -39,6 +39,12 @@ RGB 记录表面纹理、冰面结构和海豹的可见外观，包括破碎海�
 | 测试 | 1983 | 7383 | 3.72 |
 | **合计** | **3983** | **12554** | **3.15** |
 
+<p align="center">
+  <img src="assets/seal_target_number_distribution_v2.png" alt="每张图像的目标数量分布" width="32%">
+  <img src="assets/seal_target_size_distribution_v2.png" alt="目标尺寸分布" width="32%">
+  <img src="assets/seal_target_scr_distribution_v2.png" alt="目标信杂比分布" width="32%">
+</p>
+
 信杂比分布较宽，多数目标相对周围杂波只有偏低到中等的对比度。
 
 每个样本在四个文件夹中使用同一个文件主名：
