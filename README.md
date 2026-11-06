@@ -10,7 +10,7 @@
 
 <p align="center"><strong>🖼️ 3,983</strong> paired RGB-T images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
 
-This repository is the **1st** work focused on small-target detection of Arctic seals. The dataset is the main release, and MLRF-Net is the baseline we provide with it. AS4000 is the **1st** multimodal dataset built for that task, a benchmark for detecting extremely small Arctic seals in airborne RGB–thermal imagery. Remote-sensing imagery of Arctic seals is important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
+This repository is the **1st** work focused on small-target detection of Arctic seals. For this task, it releases AS4000, the **1st** multimodal benchmark for detecting extremely small seals in airborne RGB–thermal imagery. These remote-sensing observations are important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
 
 <p align="center">
   <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
