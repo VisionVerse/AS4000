@@ -107,7 +107,7 @@ On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability,
 
 ### Qualitative
 
-<p align="justify">Each group below pairs the RGB–thermal input and ground-truth mask with the MLRF-Net prediction, which stays close to these few-pixel targets.</p>
+<p align="justify">The qualitative visualization of MLRF-Net and the compared methods clearly shows the advantage of MLRF-Net.</p>
 
 ![Qualitative comparison on AS4000](assets/qualitative_results.png)
 
