@@ -158,7 +158,7 @@ weights/thermal_lora.pt
 weights/best.pth
 ```
 
-`sam3.pt` is the SAM3 image checkpoint. `rgb_lora.pt` and `thermal_lora.pt` are the frozen modality LoRA weights. `best.pth` contains the trained `m1` and `lora3` state dictionaries.
+`sam3.pt` is the SAM3 image checkpoint. `rgb_lora.pt` and `thermal_lora.pt` are the frozen modality LoRA weights. `best.pth` contains the trained BSRF and CM-LoRA state dictionaries.
 
 ## Train
 
@@ -178,7 +178,7 @@ torchrun --nproc_per_node=4 train.py \
   --val_data_dir data/val
 ```
 
-The batch size is 1 image per GPU. With more than one GPU, gradients of M1 and LoRA3 are averaged across GPUs. Training runs for 30 epochs by default, and the learning rate is multiplied by 0.1 every 50 epochs. The best validation checkpoint is saved to `train_logs/best.pth`.
+The batch size is 1 image per GPU. With more than one GPU, gradients of M1 and LoRA3 are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to `train_logs/best.pth`.
 
 ## Test
 
@@ -207,7 +207,7 @@ The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 thres
 python efficiency.py
 ```
 
-The script reports parameters, GFLOPs, and FPS for RGB LoRA, thermal LoRA, LoRA3, and M1. LoRA3 is executed on both modalities, so its compute is counted twice. The SAM3 trunk, decoder, and text encoder are left out of the total. One multiply-add counts as 1 GFLOP / 1e9.
+The script reports parameters, GFLOPs, and FPS for RGB LoRA, thermal LoRA, LoRA3, and BSRF. LoRA3 is executed on both modalities, so its compute is counted twice. The SAM3 trunk, decoder, and text encoder are left out of the total. One multiply-add counts as 1 GFLOP / 1e9.
 
 ## Citation
 

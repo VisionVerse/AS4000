@@ -156,7 +156,7 @@ weights/thermal_lora.pt
 weights/best.pth
 ```
 
-`sam3.pt` 是 SAM3 图像模型权重。`rgb_lora.pt` 和 `thermal_lora.pt` 是冻结的模态 LoRA。`best.pth` 保存训练好的 `m1` 和 `lora3`。
+`sam3.pt` 是 SAM3 图像模型权重。`rgb_lora.pt` 和 `thermal_lora.pt` 是冻结的模态 LoRA。`best.pth` 保存训练好的 BSRF 和 CM-LoRA。
 
 ## 训练
 
@@ -176,7 +176,7 @@ torchrun --nproc_per_node=4 train.py \
   --val_data_dir data/val
 ```
 
-每张 GPU 每次处理 1 张图像。多卡时，M1 和 LoRA3 的梯度在卡间取平均。默认训练 30 个 epoch，学习率每 50 个 epoch 乘以 0.1。验证集上最好的权重保存到 `train_logs/best.pth`。
+每张 GPU 每次处理 1 张图像。多卡时，M1 和 LoRA3 的梯度在卡间取平均。默认训练 30 个 epoch。验证集上最好的权重保存到 `train_logs/best.pth`。
 
 ## 测试
 
@@ -205,7 +205,7 @@ python evaluate.py --pred_root test_maps
 python efficiency.py
 ```
 
-统计 RGB LoRA、热红外 LoRA、LoRA3 和 M1 的参数量、GFLOPs 和 FPS。LoRA3 在两路模态上各执行一次，计算量按两次计入。SAM3 主干、解码器和文本编码不计入。一次乘加计为 1，GFLOPs 等于乘加次数除以 1e9。
+统计 RGB LoRA、热红外 LoRA、LoRA3 和 BSRF 的参数量、GFLOPs 和 FPS。LoRA3 在两路模态上各执行一次，计算量按两次计入。SAM3 主干、解码器和文本编码不计入。一次乘加计为 1，GFLOPs 等于乘加次数除以 1e9。
 
 ## 引用
 
