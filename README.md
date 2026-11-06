@@ -10,7 +10,7 @@
 
 <p align="center"><strong>🖼️ 3,983</strong> paired RGB-T images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
 
-This repository is the **1st** work focused on RGB-T Small Target Detection of Arctic seals. For this task, we release AS4000, the **1st** multimodal benchmark for detecting extremely small arctic seals in RGB–thermal imagery. These remote sensing observations are important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
+<p align="justify">This repository is the <strong>1st</strong> work focused on RGB-T Small Target Detection of Arctic seals. For this task, we release AS4000, the <strong>1st</strong> multimodal benchmark for detecting extremely small arctic seals in RGB–thermal imagery. These remote sensing observations are important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.</p>
 
 <p align="center">
   <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
@@ -32,9 +32,9 @@ This repository is the **1st** work focused on RGB-T Small Target Detection of A
 
 ## 🗂️ Dataset
 
-AS4000 is built for RGB–thermal small-target detection in polar environments. Conventional RGB–T benchmarks are dominated by generic objects. AS4000 is built around sparse wildlife, cluttered ice and water, and two modalities that do not describe the scene in the same way.
+<p align="justify">AS4000 is built for RGB–thermal small-target detection in polar environments. Conventional RGB–T benchmarks are dominated by generic objects. AS4000 is built around sparse wildlife, cluttered ice and water, and two modalities that do not describe the scene in the same way.</p>
 
-RGB records surface texture, ice structure, and the visible appearance of a seal: broken sea ice, irregular ice edges, and fine surface patterns. Thermal records radiation. Its background intensity and spatial pattern change substantially from the RGB view. The two signals are complementary and inconsistent. A seal can look like a piece of ice, or like a small thermal glitch.
+<p align="justify">RGB records surface texture, ice structure, and the visible appearance of a seal: broken sea ice, irregular ice edges, and fine surface patterns. Thermal records radiation. Its background intensity and spatial pattern change substantially from the RGB view. The two signals are complementary and inconsistent. A seal can look like a piece of ice, or like a small thermal glitch.</p>
 
 <div align="center">
 
@@ -49,27 +49,27 @@ RGB records surface texture, ice structure, and the visible appearance of a seal
 
 <p align="center"><img src="assets/seal_target_number_distribution_v2.png" alt="Distribution of target count per image" width="32%"> <img src="assets/seal_target_size_distribution_v2.png" alt="Distribution of target size" width="32%"> <img src="assets/seal_target_scr_distribution_v2.png" alt="Distribution of target signal-to-clutter ratio" width="32%"></p>
 
-The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.
+<p align="justify">The signal-to-clutter ratio is broad. Most targets have only low to moderate contrast against the surrounding clutter.</p>
 
-Each sample uses the same file stem across four folders:
+<p align="justify">Each sample uses the same file stem across four folders:</p>
 
 ```text
 RGB/*.jpg    T/*.tif    box/*.txt    GT/*.png
 ```
 
-Boxes are pixel `xyxy`, one box per line. Mask pixels above 128 are foreground. Thermal TIFF values must keep the normalization in `data.py`, so the frozen thermal LoRA sees the distribution it was trained on.
+<p align="justify">Boxes are pixel <code>xyxy</code>, one box per line. Mask pixels above 128 are foreground. Thermal TIFF values must keep the normalization in <code>data.py</code>, so the frozen thermal LoRA sees the distribution it was trained on.</p>
 
 ## 🧠 Baseline: MLRF-Net
 
-The repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).
+<p align="justify">The repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).</p>
 
-CM-LoRA freezes the pretrained [SAM3](https://github.com/Sompote/SAM3_LoRA) encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.
+<p align="justify">CM-LoRA freezes the pretrained <a href="https://github.com/Sompote/SAM3_LoRA">SAM3</a> encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.</p>
 
-BSRF exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.
+<p align="justify">BSRF exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.</p>
 
 ![MLRF-Net framework](assets/mlrf-net-v4.png)
 
-On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of 17.17×10<sup>-6</sup>, ahead of the compared methods on all four accuracy metrics.
+<p align="justify">On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability, and a false-alarm rate of 17.17×10<sup>-6</sup>, ahead of the compared methods on all four accuracy metrics.</p>
 
 Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in units of 10<sup>-6</sup>. ↑ means higher is better, and ↓ means lower is better. The best result in each column is shown in $\color{red}{\pmb{\mathrm{bold\ red}}}$, and the second-best result in $\color{blue}{\mathrm{blue}}$.
 
@@ -96,17 +96,17 @@ Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in un
 
 ## 🛠️ Setup
 
-Linux, an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.
+<p align="justify">Linux, an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.</p>
 
 ```bash
 pip install -r requirements.txt
 ```
 
-`third_party/sam3` is the SAM 3 package imported by this repository. It comes from [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA). The SAM 3 code is SAM material from Meta and remains under the license in `third_party/sam3/LICENSE`.
+<p align="justify"><code>third_party/sam3</code> is the SAM 3 package imported by this repository. It comes from <a href="https://github.com/Sompote/SAM3_LoRA">SAM3-LoRA</a>. The SAM 3 code is SAM material from Meta and remains under the license in <code>third_party/sam3/LICENSE</code>.</p>
 
 ## 📦 Download
 
-The four weight files and the prediction results are on Baidu Netdisk.
+<p align="justify">The four weight files and the prediction results are on Baidu Netdisk.</p>
 
 <div align="center">
 
@@ -120,7 +120,7 @@ The four weight files and the prediction results are on Baidu Netdisk.
 
 </div>
 
-Place the downloaded files as follows. If an archive uses different names, edit the paths in `paths.py` or pass them on the command line.
+<p align="justify">Place the downloaded files as follows. If an archive uses different names, edit the paths in <code>paths.py</code> or pass them on the command line.</p>
 
 ```text
 data/train/RGB/*.jpg
@@ -136,7 +136,7 @@ weights/thermal_lora.pt
 weights/best.pth
 ```
 
-`sam3.pt` is the SAM3 image checkpoint. `rgb_lora.pt` and `thermal_lora.pt` are the frozen modality LoRA weights. `best.pth` contains the trained BSRF and CM-LoRA state dictionaries.
+<p align="justify"><code>sam3.pt</code> is the SAM3 image checkpoint. <code>rgb_lora.pt</code> and <code>thermal_lora.pt</code> are the frozen modality LoRA weights. <code>best.pth</code> contains the trained BSRF and CM-LoRA state dictionaries.</p>
 
 ## 🚀 Train
 
@@ -158,7 +158,7 @@ torchrun --nproc_per_node=4 train.py \
   --save_path train_logs
 ```
 
-The batch size is 1 image per GPU. With more than one GPU, gradients of BSRF and CM-LoRA are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to `train_logs/best.pth`.
+<p align="justify">The batch size is 1 image per GPU. With more than one GPU, gradients of BSRF and CM-LoRA are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to <code>train_logs/best.pth</code>.</p>
 
 ## 🔎 Test
 
@@ -172,7 +172,7 @@ python test.py \
   --save_dir test_maps
 ```
 
-This writes one 8-bit probability map per test image to `test_maps/`, at the original image resolution.
+<p align="justify">This writes one 8-bit probability map per test image to <code>test_maps/</code>, at the original image resolution.</p>
 
 ## 📊 Evaluate
 
@@ -182,7 +182,7 @@ python evaluate.py \
   --gt_dir data/test/GT
 ```
 
-The report contains IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.
+<p align="justify">The report contains IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.</p>
 
 <!--
 ## 📝 Citation
@@ -220,4 +220,4 @@ The report contains IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0
 
 ## 📬 Contact
 
-For the validation set, the test set, or other questions, email [1546144577@qq.com](mailto:1546144577@qq.com).
+<p align="justify">For the validation set, the test set, or other questions, email <a href="mailto:1546144577@qq.com">1546144577@qq.com</a>.</p>
