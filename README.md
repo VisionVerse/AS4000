@@ -10,7 +10,7 @@
 
 <p align="center"><strong>🖼️ 3,983</strong> paired RGB-T images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
 
-This repository is the **1st** work focused on small-target detection of Arctic seals. For this task, it releases AS4000, the **1st** multimodal benchmark for detecting extremely small seals in airborne RGB–thermal imagery. These remote-sensing observations are important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
+This repository is the **1st** work focused on RGB-T Small Target Detection of Arctic seals. For this task, we release AS4000, the **1st** multimodal benchmark for detecting extremely small arctic seals in RGB–thermal imagery. These remote sensing observations are important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.
 
 <p align="center">
   <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
@@ -146,14 +146,16 @@ python train.py \
   --rgb_lora weights/rgb_lora.pt \
   --thermal_lora weights/thermal_lora.pt \
   --train_data_dir data/train \
-  --val_data_dir data/val
+  --val_data_dir data/val \
+  --save_path train_logs
 
 torchrun --nproc_per_node=4 train.py \
   --checkpoint weights/sam3.pt \
   --rgb_lora weights/rgb_lora.pt \
   --thermal_lora weights/thermal_lora.pt \
   --train_data_dir data/train \
-  --val_data_dir data/val
+  --val_data_dir data/val \
+  --save_path train_logs
 ```
 
 The batch size is 1 image per GPU. With more than one GPU, gradients of BSRF and CM-LoRA are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to `train_logs/best.pth`.
@@ -166,7 +168,8 @@ python test.py \
   --sam_checkpoint weights/sam3.pt \
   --rgb_lora weights/rgb_lora.pt \
   --thermal_lora weights/thermal_lora.pt \
-  --test_data_dir data/test
+  --test_data_dir data/test \
+  --save_dir test_maps
 ```
 
 This writes one 8-bit probability map per test image to `test_maps/`, at the original image resolution.
@@ -174,10 +177,12 @@ This writes one 8-bit probability map per test image to `test_maps/`, at the ori
 ## 📊 Evaluate
 
 ```bash
-python evaluate.py --pred_root test_maps
+python evaluate.py \
+  --pred_root test_maps \
+  --gt_dir data/test/GT
 ```
 
-The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.
+The report contains IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.
 
 <!--
 ## 📝 Citation
@@ -212,3 +217,7 @@ The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 thres
 
 [![Star History Chart](https://api.star-history.com/svg?repos=VisionVerse/AS4000&type=Date)](https://www.star-history.com/#VisionVerse/AS4000&Date)
 -->
+
+## 📬 Contact
+
+For the validation set, the test set, or other questions, email [1546144577@qq.com](mailto:1546144577@qq.com).
