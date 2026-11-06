@@ -8,12 +8,13 @@
   <img src="https://img.shields.io/github/stars/VisionVerse/AS4000?style=flat&label=Stars&color=daaa00" alt="Stars">
 </p>
 
-![avatar](/assets/AS4000.png)
-
 <p align="center"><strong>🖼️ 3,983</strong> paired RGB-T images · <strong>🦭 12,554</strong> seals · <strong>📐 mostly 10–20</strong> pixels · <strong>🏷️ pixel-level masks</strong></p>
 
 <p align="justify">This repository is the <strong>1st</strong> work focused on RGB-T Small Target Detection of Arctic seals. For this task, we release AS4000, the <strong>1st</strong> multimodal benchmark for detecting extremely small Arctic seals in RGB–thermal imagery. These remote sensing observations are important for monitoring polar wildlife and for ecological assessment of seal populations in a changing sea-ice environment.</p>
 
+<p align="center">
+  <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
+</p>
 
 ## ✨ Highlights
 
@@ -28,11 +29,6 @@
 ## 🗂️ Dataset
 
 <p align="justify">To support RGB-Thermal small target detection research in polar environments, we establish AS4000. AS4000 comprises 3,983 paired RGB and thermal images with pixel-level target annotations, focusing on extremely small Arctic seals against heterogeneous ice and water backgrounds. Unlike conventional RGB-T benchmarks dominated by generic objects, AS4000 provides a task-specific dataset for investigating sparse wildlife targets, complex background interference, and complementary modality responses.</p>
-
-<p align="center">
-  <img src="assets/seal_show.png" alt="RGB, thermal, and ground-truth examples from AS4000" width="100%">
-</p>
-
 
 <p align="justify">The 3,983 paired images are divided into 1,500 training pairs, 500 validation pairs, and 1,983 testing pairs. Approximately 45% of the images contain a single target, and the frequency decreases as the target count increases, indicating a predominantly sparse target distribution. Most targets are concentrated around 10~20 pixels. Furthermore, most targets exhibit relatively low to moderate contrast against surrounding clutter. These statistical characteristics demonstrate the challenges of detecting sparse, extremely small targets under heterogeneous Arctic background conditions.</p>
 
@@ -59,15 +55,26 @@ train/   val/   test/
 └── GT/*.png
 ```
 
+```text
+data/train/RGB/*.jpg
+data/train/T/*.tif
+data/train/box/*.txt
+data/train/GT/*.png
+data/val/...
+data/test/...
+```
+
 ## 🧠 Baseline: MLRF-Net
 
-<p align="justify">The repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).</p>
+<p align="justify">This repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).</p>
 
 <p align="justify">CM-LoRA freezes the pretrained <a href="https://github.com/Sompote/SAM3_LoRA">SAM3</a> encoders and adapts them with a modality-specific adapter on each branch plus one shared low-rank update, so RGB and thermal features are tuned together while the pretrained weights stay intact.</p>
 
 <p align="justify">BSRF exchanges the two feature maps with bidirectional cross-attention and then refines each modality spatially. The fused representation uses complementary cues and makes the small targets easier to localize.</p>
 
 ![MLRF-Net framework](assets/mlrf-net-v4.png)
+
+### Quantitative
 
 <div align="justify">
 
@@ -96,6 +103,8 @@ On AS4000, MLRF-Net reaches 51.93% IoU, 68.36% F1, 89.15% detection probability,
 
 </div>
 
+### Qualitative
+
 <p align="justify">Each group below pairs the RGB–thermal input and ground-truth mask with the MLRF-Net prediction, which stays close to these few-pixel targets.</p>
 
 ![Qualitative comparison on AS4000](assets/qualitative_results.png)
@@ -118,10 +127,10 @@ pip install -r requirements.txt
 
 | Content | Description | Link |
 | :---: | :---: | :---: |
-| `sam3.pt` | Frozen SAM3 image checkpoint for training and testing. | [Baidu Netdisk](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
+| `sam3.pt` | Frozen SAM3 checkpoint for training and testing. | [Baidu Netdisk](https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3) |
 | `rgb_lora.pt` | Frozen LoRA weights for the RGB branch. | [Baidu Netdisk](https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA) |
 | `thermal_lora.pt` | Frozen LoRA weights for the thermal branch. | [Baidu Netdisk](https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA) |
-| `best.pth` | Trained BSRF and shared CM-LoRA weights for testing. | [Baidu Netdisk](https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best) |
+| `best.pth` | Trained BSRF and CM-LoRA weights for testing. | [Baidu Netdisk](https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best) |
 | Prediction results | Precomputed test probability maps for evaluation. | [Baidu Netdisk](https://pan.baidu.com/s/12qjWecExrdNCf_wFrBwfZA?pwd=pred) |
 
 </div>
@@ -129,13 +138,6 @@ pip install -r requirements.txt
 <p align="justify">Place the downloaded files as follows. If an archive uses different names, edit the paths in <code>paths.py</code> or pass them on the command line.</p>
 
 ```text
-data/train/RGB/*.jpg
-data/train/T/*.tif
-data/train/box/*.txt
-data/train/GT/*.png
-data/val/...
-data/test/...
-
 weights/sam3.pt
 weights/rgb_lora.pt
 weights/thermal_lora.pt
