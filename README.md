@@ -26,17 +26,17 @@ pip install -r requirements.txt
 
 ## Download links
 
-The training set, validation set, test set, and the four weight files are on Baidu Netdisk.
+The training set and the four weight files are on Baidu Netdisk. For the validation set or the test set, email [1546144577@qq.com](mailto:1546144577@qq.com).
 
 | Content | Link |
 | --- | --- |
-| Training set | |
-| Validation set | |
-| Test set | |
-| `sam3.pt` | |
-| `rgb_lora.pt` | |
-| `thermal_lora.pt` | |
-| `best.pth` | |
+| Training set | https://pan.baidu.com/s/1jybcryZ1uE8vph3uX5hVKw?pwd=Seal |
+| Validation set | [1546144577@qq.com](mailto:1546144577@qq.com) |
+| Test set | [1546144577@qq.com](mailto:1546144577@qq.com) |
+| `sam3.pt` | https://pan.baidu.com/s/1JwaF6WmSvZWhKpDP5FQzIQ?pwd=SAM3 |
+| `rgb_lora.pt` | https://pan.baidu.com/s/1bXAps5I6cxG5c9McIgVq6A?pwd=LoRA |
+| `thermal_lora.pt` | https://pan.baidu.com/s/18khwgIBfMxJAAub6xG7Fmw?pwd=LoRA |
+| `best.pth` | https://pan.baidu.com/s/1Jft2i6gBvHjPJtzwamEaYw?pwd=best |
 
 After downloading, arrange the files as follows. If an archive uses different names, edit the path constants in `paths.py` or pass the command-line arguments.
 
