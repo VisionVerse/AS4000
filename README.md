@@ -123,7 +123,7 @@ pip install -r requirements.txt
 
 ## 📦 Download
 
-<p align="justify">The four weight files and the prediction results are on Baidu Netdisk.</p>
+<p align="justify">Three pretrained weights, one best trained model, and the prediction results are on Baidu Netdisk.</p>
 
 <div align="center">
 
