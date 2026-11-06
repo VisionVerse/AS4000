@@ -18,13 +18,13 @@ AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB
 
 ## ✨ Highlights
 
-| | |
-| --- | --- |
-| 🖼️ Pairs | 3,983 spatially aligned RGB–thermal images |
-| 🦭 Targets | 12,554 seals, 3.15 per image |
-| 🏷️ Labels | Pixel masks and bounding boxes |
-| 📐 Target size | Most seals cover about 10–20 pixels |
-| ✂️ Split | 1,500 train / 500 val / 1,983 test |
+<table>
+  <tr><td>🖼️ Pairs</td><td>3,983 spatially aligned RGB–thermal images</td></tr>
+  <tr><td>🦭 Targets</td><td>12,554 seals, 3.15 per image</td></tr>
+  <tr><td>🏷️ Labels</td><td>Pixel masks and bounding boxes</td></tr>
+  <tr><td>📐 Target size</td><td>Most seals cover about 10–20 pixels</td></tr>
+  <tr><td>✂️ Split</td><td>1,500 train / 500 val / 1,983 test</td></tr>
+</table>
 
 ## 🗂️ Dataset
 
