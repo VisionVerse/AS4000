@@ -4,7 +4,7 @@
 
 [![Stars](https://img.shields.io/github/stars/VisionVerse/AS4000?style=social)](https://github.com/VisionVerse/AS4000/stargazers)
 
-**3,983** paired aerial images · **12,554** seals · mostly **10–20** pixels · pixel-level masks
+**🖼️ 3,983** paired aerial images · **🦭 12,554** seals · **📐 mostly 10–20** pixels · **🏷️ pixel-level masks**
 
 AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB–thermal imagery. The dataset is the main release. MLRF-Net is the baseline we provide with it.
 
@@ -16,17 +16,17 @@ AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB
   RGB shows ice texture. Thermal shows a different radiation pattern. The seal is only a few pixels wide.
 </p>
 
-## Highlights
+## ✨ Highlights
 
 | | |
 | --- | --- |
-| Pairs | 3,983 spatially aligned RGB–thermal images |
-| Targets | 12,554 seals, 3.15 per image |
-| Labels | Pixel masks and bounding boxes |
-| Target size | Most seals cover about 10–20 pixels |
-| Split | 1,500 train / 500 val / 1,983 test |
+| 🖼️ Pairs | 3,983 spatially aligned RGB–thermal images |
+| 🦭 Targets | 12,554 seals, 3.15 per image |
+| 🏷️ Labels | Pixel masks and bounding boxes |
+| 📐 Target size | Most seals cover about 10–20 pixels |
+| ✂️ Split | 1,500 train / 500 val / 1,983 test |
 
-## Dataset
+## 🗂️ Dataset
 
 AS4000 is built for RGB–thermal small-target detection in polar environments. Conventional RGB–T benchmarks are dominated by generic objects. AS4000 is built around sparse wildlife, cluttered ice and water, and two modalities that do not describe the scene in the same way.
 
@@ -49,7 +49,7 @@ RGB/*.jpg    T/*.tif    box/*.txt    GT/*.png
 
 Boxes are pixel `xyxy`, one box per line. Mask pixels above 128 are foreground. Thermal TIFF values must keep the normalization in `data.py`, so the frozen thermal LoRA sees the distribution it was trained on.
 
-## Baseline: MLRF-Net
+## 🧠 Baseline: MLRF-Net
 
 The repository also releases a baseline for this benchmark. MLRF-Net targets the same setting: tiny seals, cluttered ice, and RGB–thermal responses that do not match. It combines Cross-Modal Low-Rank Adaptation (CM-LoRA) and Bidirectional Spatial Refinement Fusion (BSRF).
 
@@ -80,7 +80,7 @@ Comparison of efficiency and accuracy on AS4000. F<sub>a</sub> is reported in un
 | SAM3 | ICLR, 2026 | 473.59 | 7149.94 | 3.30 | 22.47 | 36.70 | 68.79 | 350.80 |
 | **Ours** | -- | 9.09 | 110.11 | 13.61 | $\color{red}{\pmb{51.93}}$ | $\color{red}{\pmb{68.36}}$ | $\color{red}{\pmb{89.15}}$ | $\color{red}{\pmb{17.17}}$ |
 
-## Setup
+## 🛠️ Setup
 
 Linux, an NVIDIA GPU, Python 3.12, and PyTorch 2.7 or newer.
 
@@ -90,7 +90,7 @@ pip install -r requirements.txt
 
 `third_party/sam3` is the SAM 3 package imported by this repository. It comes from [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA). The SAM 3 code is SAM material from Meta and remains under the license in `third_party/sam3/LICENSE`.
 
-## Download
+## 📦 Download
 
 The training set and the four weight files are on Baidu Netdisk. For the validation set or the test set, email [1546144577@qq.com](mailto:1546144577@qq.com).
 
@@ -123,7 +123,7 @@ weights/best.pth
 
 `sam3.pt` is the SAM3 image checkpoint. `rgb_lora.pt` and `thermal_lora.pt` are the frozen modality LoRA weights. `best.pth` contains the trained BSRF and CM-LoRA state dictionaries.
 
-## Train
+## 🚀 Train
 
 ```bash
 python train.py \
@@ -143,7 +143,7 @@ torchrun --nproc_per_node=4 train.py \
 
 The batch size is 1 image per GPU. With more than one GPU, gradients of BSRF and CM-LoRA are averaged across GPUs. Training runs for 30 epochs by default. The best validation checkpoint is saved to `train_logs/best.pth`.
 
-## Test
+## 🔎 Test
 
 ```bash
 python test.py \
@@ -156,7 +156,7 @@ python test.py \
 
 This writes one 8-bit probability map per test image to `test_maps/`, at the original image resolution.
 
-## Evaluate
+## 📊 Evaluate
 
 ```bash
 python evaluate.py --pred_root test_maps
@@ -164,13 +164,13 @@ python evaluate.py --pred_root test_maps
 
 The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 threshold probabilities at 0.5. Pd and Fa match 8-connected components whose centroids are less than 3 pixels apart. Fa is the area of unmatched prediction components divided by the number of image pixels.
 
-## Citation
+## 📝 Citation
 
 ```bibtex
 % Paste the BibTeX entry of this paper here.
 ```
 
-## References
+## 📚 References
 
 ```bibtex
 @inproceedings{carion2026sam,
@@ -192,6 +192,6 @@ The report contains S, weighted F, E, MAE, IoU, F1, Pd, and Fa. IoU and F1 thres
 }
 ```
 
-## Star History
+## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=VisionVerse/AS4000&type=Date)](https://www.star-history.com/#VisionVerse/AS4000&Date)

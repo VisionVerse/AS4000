@@ -4,7 +4,7 @@
 
 [![Stars](https://img.shields.io/github/stars/VisionVerse/AS4000?style=social)](https://github.com/VisionVerse/AS4000/stargazers)
 
-**3983** 对航空图像 · **12554** 只海豹 · 大多只有 **10–20** 像素 · 像素级标注
+**🖼️ 3983** 对航空图像 · **🦭 12554** 只海豹 · **📐 大多只有 10–20** 像素 · **🏷️ 像素级标注**
 
 AS4000 是面向航空 RGB–热红外图像中极小北极海豹的检测基准。数据集是这个仓库的主体，MLRF-Net 是随基准一起给出的基线方法。
 
@@ -16,17 +16,17 @@ AS4000 是面向航空 RGB–热红外图像中极小北极海豹的检测基准
   RGB 记录冰面纹理，热红外给出另一套辐射分布。海豹往往只有几个像素宽。
 </p>
 
-## 数据一览
+## ✨ 数据一览
 
 | | |
 | --- | --- |
-| 图像对 | 3983 对空间对齐的 RGB–热红外图像 |
-| 目标 | 12554 只，平均每张 3.15 只 |
-| 标注 | 像素级掩膜和包围框 |
-| 目标尺寸 | 大多数约 10–20 像素 |
-| 划分 | 训练 1500 / 验证 500 / 测试 1983 |
+| 🖼️ 图像对 | 3983 对空间对齐的 RGB–热红外图像 |
+| 🦭 目标 | 12554 只，平均每张 3.15 只 |
+| 🏷️ 标注 | 像素级掩膜和包围框 |
+| 📐 目标尺寸 | 大多数约 10–20 像素 |
+| ✂️ 划分 | 训练 1500 / 验证 500 / 测试 1983 |
 
-## 数据集
+## 🗂️ 数据集
 
 AS4000 用于极地环境下的 RGB–热红外小目标检测。常规 RGB–T 基准以通用物体为主。AS4000 关注的是稀疏的野生动物、破碎的冰面和水面，以及两种并不一致的模态响应。
 
@@ -49,7 +49,7 @@ RGB/*.jpg    T/*.tif    box/*.txt    GT/*.png
 
 框是像素 `xyxy`，一行一个框。掩膜中大于 128 的像素为前景。热红外 TIFF 必须保持 `data.py` 中的归一化顺序，冻结的热红外 LoRA 才能看到原来的输入分布。
 
-## 基线方法：MLRF-Net
+## 🧠 基线方法：MLRF-Net
 
 仓库同时给出这个基准上的一个基线。MLRF-Net 针对的就是很小的海豹、复杂冰面，以及不一致的 RGB–热红外响应。它由跨模态低秩适配（CM-LoRA）和双向空间细化融合（BSRF）组成。
 
@@ -80,7 +80,7 @@ AS4000 上与现有方法的效率和精度对比。F<sub>a</sub> 的单位为 1
 | SAM3 | ICLR, 2026 | 473.59 | 7149.94 | 3.30 | 22.47 | 36.70 | 68.79 | 350.80 |
 | **本文** | -- | 9.09 | 110.11 | 13.61 | $\color{red}{\pmb{51.93}}$ | $\color{red}{\pmb{68.36}}$ | $\color{red}{\pmb{89.15}}$ | $\color{red}{\pmb{17.17}}$ |
 
-## 环境
+## 🛠️ 环境
 
 在带 NVIDIA GPU 的 Linux 机器上运行，Python 3.12，PyTorch 2.7 或更高版本。
 
@@ -90,7 +90,7 @@ pip install -r requirements.txt
 
 `third_party/sam3` 是本仓库实际导入的 SAM 3 代码，来自 [SAM3-LoRA](https://github.com/Sompote/SAM3_LoRA)。其中的 SAM 3 代码属于 Meta 的 SAM 材料，许可见 `third_party/sam3/LICENSE`。
 
-## 下载
+## 📦 下载
 
 训练集和 4 个权重文件放在百度网盘。验证集或测试集请联系 [1546144577@qq.com](mailto:1546144577@qq.com)。
 
@@ -123,7 +123,7 @@ weights/best.pth
 
 `sam3.pt` 是 SAM3 图像模型权重。`rgb_lora.pt` 和 `thermal_lora.pt` 是冻结的模态 LoRA。`best.pth` 保存训练好的 BSRF 和 CM-LoRA。
 
-## 训练
+## 🚀 训练
 
 ```bash
 python train.py \
@@ -143,7 +143,7 @@ torchrun --nproc_per_node=4 train.py \
 
 每张 GPU 每次处理 1 张图像。多卡时，BSRF 和 CM-LoRA 的梯度在卡间取平均。默认训练 30 个 epoch。验证集上最好的权重保存到 `train_logs/best.pth`。
 
-## 测试
+## 🔎 测试
 
 ```bash
 python test.py \
@@ -156,7 +156,7 @@ python test.py \
 
 每张测试图像输出一张 8 位概率图，保存在 `test_maps/`，分辨率为原始图像尺寸。
 
-## 评估
+## 📊 评估
 
 ```bash
 python evaluate.py --pred_root test_maps
@@ -164,13 +164,13 @@ python evaluate.py --pred_root test_maps
 
 输出 S、加权 F、E、MAE、IoU、F1、Pd 和 Fa。IoU 与 F1 在概率大于 0.5 处二值化。Pd 和 Fa 使用 8 连通域，质心距离小于 3 像素视为匹配。Fa 是未匹配预测连通域的面积除以图像总像素数。
 
-## 引用
+## 📝 引用
 
 ```bibtex
 % 在这里粘贴本论文的 BibTeX。
 ```
 
-## 参考文献
+## 📚 参考文献
 
 ```bibtex
 @inproceedings{carion2026sam,
@@ -192,6 +192,6 @@ python evaluate.py --pred_root test_maps
 }
 ```
 
-## Star 数量变化
+## ⭐ Star 数量变化
 
 [![Star History Chart](https://api.star-history.com/svg?repos=VisionVerse/AS4000&type=Date)](https://www.star-history.com/#VisionVerse/AS4000&Date)
