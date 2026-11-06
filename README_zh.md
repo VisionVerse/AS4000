@@ -12,6 +12,8 @@ CM-LoRA 冻结预训练的 [SAM3](https://github.com/Sompote/SAM3_LoRA) 编码�
 
 BSRF 先用双向交叉注意力交换两路特征，再分别做空间细化。融合后的表示吸收互补信息，便于在复杂背景中定位小目标。
 
+![MLRF-Net 框架](assets/mlrf-net-v4.png)
+
 在 AS4000 上，MLRF-Net 的 IoU 为 51.93%，F<sub>1</sub> 为 68.36%，检测概率为 89.15%，虚警率为 17.17×10<sup>-6</sup>，四项精度指标均高于所比较的方法。
 
 AS4000 上与现有方法的效率和精度对比。F<sub>a</sub> 的单位为 10<sup>-6</sup>。↑ 表示越大越好，↓ 表示越小越好。每列最优结果为红色加粗，例如 $\color{red}{\pmb{51.93}}$；次优结果为蓝色，例如 $\color{blue}{30.74}$。
