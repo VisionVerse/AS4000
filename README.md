@@ -26,7 +26,7 @@ AS4000 is a benchmark for detecting extremely small Arctic seals in airborne RGB
 | 📐 Target size | Most seals cover about 10–20 pixels |
 | ✂️ Split | 1,500 train / 500 val / 1,983 test |
 
-## 🗂️ Dataset
+## 🗂️ AS4000: RGB-Thermal Arctic Seal Small Target Detection Dataset
 
 AS4000 is built for RGB–thermal small-target detection in polar environments. Conventional RGB–T benchmarks are dominated by generic objects. AS4000 is built around sparse wildlife, cluttered ice and water, and two modalities that do not describe the scene in the same way.
 
