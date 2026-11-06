@@ -82,7 +82,7 @@ data/test/...
 
 
 - **Cross-Modal Low-Rank Adaptation (CM-LoRA):** A parameter-efficient adaptation mechanism combining modality-specific and shared low-rank parameters to facilitate collaborative learning across RGB and thermal encoders.
-- **Bidirectional Spatial Refinement Fusion (BSRF): **A feature fusion module integrating bidirectional cross-attention and modality-specific spatial refinement to enhance target localization and suppress background interference.
+- **Bidirectional Spatial Refinement Fusion (BSRF):** A feature fusion module integrating bidirectional cross-attention and modality-specific spatial refinement to enhance target localization and suppress background interference.
 
 ## 🛠️ Setup
 
